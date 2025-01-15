@@ -21,18 +21,7 @@ extension DateTimeExtension on DateTime {
             this,
           );
 
-  String toISO8601TimeZoneString() {
-    final timeZoneOffsetInMinutes = timeZoneOffset.inMinutes;
-
-    var hour = timeZoneOffsetInMinutes ~/ 60;
-    var minute = timeZoneOffsetInMinutes % 60;
-
-    return "${iso8601TimeZoneOffsetHourFormat.format(
-      hour,
-    )}:${iso8601TimeZoneOffsetMinuteFormat.format(
-      minute,
-    )}";
-  }
+  String toISO8601TimeZoneString() => timeZoneOffset.toISO8601TimeZoneString();
 }
 
 extension DateTimeNullableExtension on DateTime? {
@@ -60,4 +49,17 @@ extension DateTimeStringExtension on String {
         this,
         buildHumanReadableDateFormat,
       );
+}
+
+extension DurationExtension on Duration {
+  String toISO8601TimeZoneString() {
+    var hour = inMinutes ~/ 60;
+    var minute = inMinutes % 60;
+
+    return "${iso8601TimeZoneOffsetHourFormat.format(
+      hour,
+    )}:${iso8601TimeZoneOffsetMinuteFormat.format(
+      minute,
+    )}";
+  }
 }
