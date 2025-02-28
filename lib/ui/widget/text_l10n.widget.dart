@@ -91,6 +91,6 @@ class TextL10n<AppLocalizationsLocalType,
       (l10nGuiRitterSelector != null)
           ? l10nGuiRitterSelector!(l10nModel.l10nGuiRitter!)
           : (l10nSelector != null)
-              ? l10nSelector!(l10nModel.l10n!)
+              ? l10nSelector!(l10nModel.l10n)
               : "";
 }
