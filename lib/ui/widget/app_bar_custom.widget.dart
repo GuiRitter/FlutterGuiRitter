@@ -77,7 +77,7 @@ Future<double> getAppBarElevation({
 
 class AppBarCustomWidget extends StatelessWidget
     implements PreferredSizeWidget {
-  final String title;
+  final Widget title;
 
   const AppBarCustomWidget({
     super.key,
@@ -96,9 +96,7 @@ class AppBarCustomWidget extends StatelessWidget
     return AppBar(
       systemOverlayStyle: SystemUiOverlayStyle.dark,
       key: appBarKey,
-      title: Text(
-        title,
-      ),
+      title: title,
       actions: [
         PopupMenuButton<String>(
           itemBuilder: (
