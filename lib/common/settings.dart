@@ -11,3 +11,7 @@ AppLocalizationsGuiRitter? get l10nGuiRitter => l10nNotifierGuiRitter.value;
 set l10nGuiRitter(AppLocalizationsGuiRitter? appL10ns) {
   l10nNotifierGuiRitter.value = appL10ns;
 }
+
+class Settings {
+  static const themeKey = 'theme';
+}

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart'
     show
+        AlertDialog,
         AnnotatedRegion,
         AppBar,
         BuildContext,
+        Column,
         GlobalKey,
         Icon,
         Icons,
         ListTile,
+        MainAxisSize,
         Material,
         PopupMenuButton,
         PopupMenuItem,
@@ -16,10 +19,14 @@ import 'package:flutter/material.dart'
         StatefulElement,
         StatelessWidget,
         Text,
+        ThemeMode,
         Widget,
-        kToolbarHeight;
+        kToolbarHeight,
+        showDialog;
 import 'package:flutter/services.dart' show Size, SystemUiOverlayStyle;
 import 'package:flutter_guiritter/common/settings.dart' show l10nGuiRitter;
+import 'package:flutter_guiritter/model/model.import.dart' show StateModel;
+import 'package:flutter_guiritter/ui/widget/widget.import.dart';
 import 'package:flutter_guiritter/util/util.import.dart' show logger;
 
 double? appBarElevation;
@@ -75,8 +82,9 @@ Future<double> getAppBarElevation({
   }
 }
 
-class AppBarCustomWidget extends StatelessWidget
-    implements PreferredSizeWidget {
+class AppBarCustomWidget<AppLocalizationsLocalType,
+        StateModelLocalType extends StateModel<AppLocalizationsLocalType>>
+    extends StatelessWidget implements PreferredSizeWidget {
   final Widget title;
 
   const AppBarCustomWidget({
@@ -118,7 +126,40 @@ class AppBarCustomWidget extends StatelessWidget
           onSelected: (
             value,
           ) =>
-              _log('Hello').print(),
+              showDialog(
+            context: context,
+            builder: (
+              context,
+            ) {
+              final optionList = [
+                ThemeOptionWidget<AppLocalizationsLocalType,
+                    StateModelLocalType>(
+                  themeMode: ThemeMode.dark,
+                  title: l10nGuiRitter!.darkTheme,
+                ),
+                ThemeOptionWidget<AppLocalizationsLocalType,
+                    StateModelLocalType>(
+                  themeMode: ThemeMode.light,
+                  title: l10nGuiRitter!.lightTheme,
+                ),
+                ThemeOptionWidget<AppLocalizationsLocalType,
+                    StateModelLocalType>(
+                  themeMode: ThemeMode.system,
+                  title: l10nGuiRitter!.systemTheme,
+                ),
+              ];
+
+              return AlertDialog(
+                title: Text(
+                  l10nGuiRitter!.chooseTheme,
+                ),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: optionList,
+                ),
+              );
+            },
+          ),
         ),
       ],
     );

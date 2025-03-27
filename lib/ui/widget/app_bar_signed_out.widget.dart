@@ -6,11 +6,13 @@ import 'package:flutter/material.dart'
         Size,
         StatelessWidget,
         Widget;
+import 'package:flutter_guiritter/model/model.import.dart' show StateModel;
 import 'package:flutter_guiritter/ui/widget/widget.import.dart'
     show AppBarCustomWidget;
 
-class AppBarSignedOutWidget extends StatelessWidget
-    implements PreferredSizeWidget {
+class AppBarSignedOutWidget<AppLocalizationsLocalType,
+        StateModelLocalType extends StateModel<AppLocalizationsLocalType>>
+    extends StatelessWidget implements PreferredSizeWidget {
   final Widget title;
 
   const AppBarSignedOutWidget({
@@ -27,7 +29,7 @@ class AppBarSignedOutWidget extends StatelessWidget
   Widget build(
     BuildContext context,
   ) =>
-      AppBarCustomWidget(
+      AppBarCustomWidget<AppLocalizationsLocalType, StateModelLocalType>(
         title: title,
       );
 }
