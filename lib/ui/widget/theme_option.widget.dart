@@ -12,7 +12,7 @@ import 'package:flutter/material.dart'
 import 'package:flutter_guiritter/common/common.import.dart' show Settings;
 import 'package:flutter_guiritter/model/model.import.dart' show StateModel;
 import 'package:flutter_guiritter/redux/redux.import.dart' show dispatch;
-import 'package:flutter_guiritter/redux/theme.action.dart' as theme_action
+import 'package:flutter_guiritter/redux/theme/action.dart' as theme_action
     show ThemeAction;
 import 'package:flutter_guiritter/util/util.import.dart' show logger;
 import 'package:flutter_redux/flutter_redux.dart' show StoreConnector;
