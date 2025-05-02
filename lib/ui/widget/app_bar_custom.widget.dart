@@ -6,9 +6,7 @@ import 'package:flutter/material.dart'
         BuildContext,
         Column,
         GlobalKey,
-        Icon,
         Icons,
-        ListTile,
         MainAxisSize,
         Material,
         PopupMenuButton,
@@ -24,10 +22,13 @@ import 'package:flutter/material.dart'
         kToolbarHeight,
         showDialog;
 import 'package:flutter/services.dart' show Size, SystemUiOverlayStyle;
-import 'package:flutter_guiritter/common/settings.dart' show l10nGuiRitter;
+import 'package:flutter_guiritter/common/common.import.dart'
+    show AppBarPopupMenuEnum, l10nGuiRitter;
 import 'package:flutter_guiritter/model/model.import.dart' show StateModel;
-import 'package:flutter_guiritter/ui/widget/widget.import.dart';
-import 'package:flutter_guiritter/util/util.import.dart' show logger;
+import 'package:flutter_guiritter/ui/widget/widget.import.dart'
+    show ThemeOptionWidget;
+import 'package:flutter_guiritter/util/util.import.dart'
+    show buildPopupMenuItem, logger;
 
 double? appBarElevation;
 
@@ -85,12 +86,94 @@ Future<double> getAppBarElevation({
 class AppBarCustomWidget<AppLocalizationsLocalType,
         StateModelLocalType extends StateModel<AppLocalizationsLocalType>>
     extends StatelessWidget implements PreferredSizeWidget {
+  final List<PopupMenuItem<String>> popupMenuItemList =
+      <PopupMenuItem<String>>[];
+
+  final Map<
+      String,
+      dynamic Function(
+        BuildContext,
+      )> onHomePopupMenuItemPressedMap = <String,
+      dynamic Function(
+    BuildContext,
+  )>{};
+
   final Widget title;
 
-  const AppBarCustomWidget({
+  AppBarCustomWidget({
     super.key,
     required this.title,
-  });
+    Map<
+            String,
+            dynamic Function(
+              BuildContext,
+            )>?
+        onHomePopupMenuItemPressedMap,
+    List<PopupMenuItem<String>> Function({
+      required List<PopupMenuItem<String>> popupMenuItemList,
+    })? popupMenuItemBuilder,
+  }) {
+    {
+      var popupMenuItemTempList = <PopupMenuItem<String>>[
+        buildPopupMenuItem(
+          value: AppBarPopupMenuEnum.theme,
+          icon: Icons.color_lens,
+          title: l10nGuiRitter!.appTheme,
+        ),
+      ];
+
+      if (popupMenuItemBuilder != null) {
+        popupMenuItemTempList = popupMenuItemBuilder(
+          popupMenuItemList: popupMenuItemTempList,
+        );
+      }
+
+      popupMenuItemList.addAll(
+        popupMenuItemTempList,
+      );
+    }
+
+    this.onHomePopupMenuItemPressedMap[AppBarPopupMenuEnum.theme.name] = (
+      BuildContext context,
+    ) =>
+        showDialog(
+          context: context,
+          builder: (
+            context,
+          ) {
+            final optionList = [
+              ThemeOptionWidget<AppLocalizationsLocalType, StateModelLocalType>(
+                themeMode: ThemeMode.dark,
+                title: l10nGuiRitter!.darkTheme,
+              ),
+              ThemeOptionWidget<AppLocalizationsLocalType, StateModelLocalType>(
+                themeMode: ThemeMode.light,
+                title: l10nGuiRitter!.lightTheme,
+              ),
+              ThemeOptionWidget<AppLocalizationsLocalType, StateModelLocalType>(
+                themeMode: ThemeMode.system,
+                title: l10nGuiRitter!.systemTheme,
+              ),
+            ];
+
+            return AlertDialog(
+              title: Text(
+                l10nGuiRitter!.chooseTheme,
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: optionList,
+              ),
+            );
+          },
+        );
+
+    if (onHomePopupMenuItemPressedMap != null) {
+      this.onHomePopupMenuItemPressedMap.addAll(
+            onHomePopupMenuItemPressedMap,
+          );
+    }
+  }
 
   @override
   Size get preferredSize => const Size.fromHeight(
@@ -110,55 +193,12 @@ class AppBarCustomWidget<AppLocalizationsLocalType,
           itemBuilder: (
             context,
           ) =>
-              [
-            PopupMenuItem<String>(
-              value: 'theme',
-              child: ListTile(
-                leading: const Icon(
-                  Icons.color_lens,
-                ),
-                title: Text(
-                  l10nGuiRitter!.appTheme,
-                ),
-              ),
-            )
-          ],
+              popupMenuItemList,
           onSelected: (
             value,
           ) =>
-              showDialog(
-            context: context,
-            builder: (
-              context,
-            ) {
-              final optionList = [
-                ThemeOptionWidget<AppLocalizationsLocalType,
-                    StateModelLocalType>(
-                  themeMode: ThemeMode.dark,
-                  title: l10nGuiRitter!.darkTheme,
-                ),
-                ThemeOptionWidget<AppLocalizationsLocalType,
-                    StateModelLocalType>(
-                  themeMode: ThemeMode.light,
-                  title: l10nGuiRitter!.lightTheme,
-                ),
-                ThemeOptionWidget<AppLocalizationsLocalType,
-                    StateModelLocalType>(
-                  themeMode: ThemeMode.system,
-                  title: l10nGuiRitter!.systemTheme,
-                ),
-              ];
-
-              return AlertDialog(
-                title: Text(
-                  l10nGuiRitter!.chooseTheme,
-                ),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: optionList,
-                ),
-              );
-            },
+              this.onHomePopupMenuItemPressedMap[value]!(
+            context,
           ),
         ),
       ],

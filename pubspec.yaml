@@ -22,6 +22,8 @@ dependencies:
   flutter_redux: ^0.10.0
   redux_thunk: ^0.4.0
 
+  dio: ^5.8.0+1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
