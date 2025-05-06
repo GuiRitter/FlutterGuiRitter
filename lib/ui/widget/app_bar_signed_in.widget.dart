@@ -1,13 +1,4 @@
-import 'package:flutter/material.dart'
-    show
-        BuildContext,
-        Icons,
-        PopupMenuItem,
-        PreferredSizeWidget,
-        Size,
-        StatelessWidget,
-        Widget,
-        kToolbarHeight;
+import 'package:flutter/material.dart' show BuildContext, Icons, PopupMenuItem;
 import 'package:flutter_guiritter/common/common.import.dart'
     show AppBarPopupMenuEnum, l10nGuiRitter;
 import 'package:flutter_guiritter/model/model.import.dart' show StateModel;
@@ -18,46 +9,81 @@ import 'package:flutter_guiritter/ui/widget/widget.import.dart'
 import 'package:flutter_guiritter/util/util.import.dart'
     show buildPopupMenuItem;
 
+Map<
+    String,
+    dynamic Function(
+      BuildContext,
+    )> buildOnHomePopupMenuItemPressedMap(
+    Map<
+            String,
+            dynamic Function(
+              BuildContext,
+            )>?
+        onHomePopupMenuItemPressedMap) {
+  final signedInMap = {
+    AppBarPopupMenuEnum.signOut.name: (
+      context,
+    ) {
+      dispatch(
+        user_action.signOut(),
+      );
+    }
+  };
+
+  return (onHomePopupMenuItemPressedMap != null)
+      ? {
+          ...onHomePopupMenuItemPressedMap,
+          ...signedInMap,
+        }
+      : signedInMap;
+}
+
+List<PopupMenuItem<String>> Function({
+  required List<PopupMenuItem<String>> popupMenuItemList,
+}) buildPopupMenuItemBuilder(
+        List<PopupMenuItem<String>> Function({
+          required List<PopupMenuItem<String>> popupMenuItemList,
+        })? popupMenuItemBuilder) =>
+    ({
+      required List<PopupMenuItem<String>> popupMenuItemList,
+    }) {
+      final signedInList = [
+        ...popupMenuItemList,
+        buildPopupMenuItem(
+          value: AppBarPopupMenuEnum.signOut,
+          icon: Icons.logout,
+          titleString: l10nGuiRitter!.signOut,
+        ),
+      ];
+
+      return (popupMenuItemBuilder != null)
+          ? popupMenuItemBuilder(
+              popupMenuItemList: signedInList,
+            )
+          : signedInList;
+    };
+
 class AppBarSignedInWidget<AppLocalizationsLocalType,
         StateModelLocalType extends StateModel<AppLocalizationsLocalType>>
-    extends StatelessWidget implements PreferredSizeWidget {
-  final Widget title;
-
-  const AppBarSignedInWidget({
+    extends AppBarCustomWidget<AppLocalizationsLocalType, StateModelLocalType> {
+  AppBarSignedInWidget({
     super.key,
-    required this.title,
-  });
-
-  @override
-  Size get preferredSize => const Size.fromHeight(
-        kToolbarHeight,
-      );
-
-  @override
-  Widget build(
-    BuildContext context,
-  ) =>
-      AppBarCustomWidget<AppLocalizationsLocalType, StateModelLocalType>(
-        title: title,
-        popupMenuItemBuilder: ({
-          required List<PopupMenuItem<String>> popupMenuItemList,
-        }) =>
-            [
-          ...popupMenuItemList,
-          buildPopupMenuItem(
-            value: AppBarPopupMenuEnum.signOut,
-            icon: Icons.logout,
-            title: l10nGuiRitter!.signOut,
+    required super.title,
+    Map<
+            String,
+            dynamic Function(
+              BuildContext,
+            )>?
+        onHomePopupMenuItemPressedMap,
+    List<PopupMenuItem<String>> Function({
+      required List<PopupMenuItem<String>> popupMenuItemList,
+    })? popupMenuItemBuilder,
+  }) : super(
+          onHomePopupMenuItemPressedMap: buildOnHomePopupMenuItemPressedMap(
+            onHomePopupMenuItemPressedMap,
           ),
-        ],
-        onHomePopupMenuItemPressedMap: {
-          AppBarPopupMenuEnum.signOut.name: (
-            context,
-          ) {
-            dispatch(
-              user_action.signOut(),
-            );
-          }
-        },
-      );
+          popupMenuItemBuilder: buildPopupMenuItemBuilder(
+            popupMenuItemBuilder,
+          ),
+        );
 }

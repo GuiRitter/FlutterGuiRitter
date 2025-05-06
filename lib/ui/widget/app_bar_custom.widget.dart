@@ -118,7 +118,7 @@ class AppBarCustomWidget<AppLocalizationsLocalType,
         buildPopupMenuItem(
           value: AppBarPopupMenuEnum.theme,
           icon: Icons.color_lens,
-          title: l10nGuiRitter!.appTheme,
+          titleString: l10nGuiRitter!.appTheme,
         ),
       ];
 

@@ -1,5 +1,5 @@
 export 'package:flutter_guiritter/ui/widget/app_bar_custom.widget.dart'
-    show AppBarCustomWidget;
+    show AppBarCustomWidget, appBarElevation, getAppBarElevation;
 export 'package:flutter_guiritter/ui/widget/app_bar_signed_in.widget.dart'
     show AppBarSignedInWidget;
 export 'package:flutter_guiritter/ui/widget/app_bar_signed_out.widget.dart'
