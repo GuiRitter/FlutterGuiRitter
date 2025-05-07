@@ -68,7 +68,9 @@ class AppBarSignedInWidget<AppLocalizationsLocalType,
     extends AppBarCustomWidget<AppLocalizationsLocalType, StateModelLocalType> {
   AppBarSignedInWidget({
     super.key,
+    super.appBarLeading,
     required super.title,
+    super.subtitle,
     Map<
             String,
             dynamic Function(

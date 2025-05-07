@@ -5,6 +5,8 @@ import 'package:flutter/material.dart'
         AppBar,
         BuildContext,
         Column,
+        CrossAxisAlignment,
+        DefaultTextStyle,
         GlobalKey,
         Icons,
         MainAxisSize,
@@ -17,6 +19,7 @@ import 'package:flutter/material.dart'
         StatefulElement,
         StatelessWidget,
         Text,
+        Theme,
         ThemeMode,
         Widget,
         kToolbarHeight,
@@ -86,6 +89,8 @@ Future<double> getAppBarElevation({
 class AppBarCustomWidget<AppLocalizationsLocalType,
         StateModelLocalType extends StateModel<AppLocalizationsLocalType>>
     extends StatelessWidget implements PreferredSizeWidget {
+  final Widget? appBarLeading;
+
   final List<PopupMenuItem<String>> popupMenuItemList =
       <PopupMenuItem<String>>[];
 
@@ -99,10 +104,13 @@ class AppBarCustomWidget<AppLocalizationsLocalType,
   )>{};
 
   final Widget title;
+  final Widget? subtitle;
 
   AppBarCustomWidget({
     super.key,
     required this.title,
+    this.subtitle,
+    this.appBarLeading,
     Map<
             String,
             dynamic Function(
@@ -184,10 +192,30 @@ class AppBarCustomWidget<AppLocalizationsLocalType,
   Widget build(
     BuildContext context,
   ) {
+    final theme = Theme.of(
+      context,
+    );
+
+    final title = (subtitle == null)
+        ? this.title
+        : Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              DefaultTextStyle(
+                style: theme.textTheme.bodySmall!.copyWith(
+                  color: theme.colorScheme.onPrimary,
+                ),
+                child: this.title,
+              ),
+              subtitle!,
+            ],
+          );
+
     return AppBar(
       systemOverlayStyle: SystemUiOverlayStyle.dark,
       key: appBarKey,
       title: title,
+      leading: appBarLeading,
       actions: [
         PopupMenuButton<String>(
           itemBuilder: (
