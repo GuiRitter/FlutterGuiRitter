@@ -1,6 +1,6 @@
 import 'package:flutter_guiritter/common/common.import.dart'
     show AppLocalizationsGuiRitter;
-import 'package:flutter_guiritter/model/models.import.dart'
+import 'package:flutter_guiritter/model/model.import.dart'
     show LoggableModel, StateModel;
 import 'package:redux/redux.dart' show Store;
 

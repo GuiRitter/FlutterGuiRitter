@@ -1,0 +1,4 @@
+enum AppBarPopupMenuEnum {
+  theme,
+  signOut;
+}

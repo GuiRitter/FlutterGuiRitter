@@ -9,7 +9,7 @@ import 'package:flutter/material.dart'
         Widget;
 import 'package:flutter_guiritter/common/common.import.dart'
     as common_gui_ritter show AppLocalizationsGuiRitter;
-import 'package:flutter_guiritter/model/models.import.dart'
+import 'package:flutter_guiritter/model/model.import.dart'
     show L10nModel, StateModel;
 import 'package:flutter_redux/flutter_redux.dart' show StoreConnector;
 

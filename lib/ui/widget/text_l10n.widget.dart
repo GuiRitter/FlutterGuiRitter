@@ -2,7 +2,7 @@ import 'package:flutter/material.dart'
     show BuildContext, Key, StatelessWidget, Text, TextAlign, TextStyle, Widget;
 import 'package:flutter_guiritter/common/common.import.dart'
     show AppLocalizationsGuiRitter;
-import 'package:flutter_guiritter/model/models.import.dart'
+import 'package:flutter_guiritter/model/model.import.dart'
     show StateModel, L10nModel;
 import 'package:flutter_redux/flutter_redux.dart' show StoreConnector;
 
