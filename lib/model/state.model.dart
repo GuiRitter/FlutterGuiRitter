@@ -2,7 +2,6 @@ import 'package:flutter/material.dart' show ThemeMode, ValueGetter;
 import 'package:flutter_guiritter/common/common.import.dart'
     show AppLocalizationsGuiRitter;
 import 'package:flutter_guiritter/model/model.import.dart' show LoadingTagModel;
-import 'package:redux/redux.dart' show Store;
 
 class StateModel<AppLocalizationsLocalType> {
   final AppLocalizationsGuiRitter? l10nGuiRitter;
@@ -47,9 +46,4 @@ class StateModel<AppLocalizationsLocalType> {
       token: newToken,
     );
   }
-
-  static bool selectIsL10nLoaded(
-    Store<StateModel> store,
-  ) =>
-      (store.state.l10nGuiRitter != null) && (store.state.l10n != null);
 }
