@@ -1,10 +1,8 @@
 import 'package:flutter_guiritter/model/model.import.dart'
-    show LoggableModel, StateModel;
+    show LoggableModel, StateModelWrapper;
 import 'package:redux/redux.dart' show Store;
 
-class InitModel<AppLocalizationsLocalType,
-        StateModelLocalType extends StateModel<AppLocalizationsLocalType>>
-    implements LoggableModel {
+class InitModel<AppLocalizationsLocalType> implements LoggableModel {
   final bool isL10nLoaded;
 
   InitModel({
@@ -18,7 +16,7 @@ class InitModel<AppLocalizationsLocalType,
   bool operator ==(
     Object other,
   ) {
-    if (other is! InitModel<AppLocalizationsLocalType, StateModelLocalType>) {
+    if (other is! InitModel<AppLocalizationsLocalType>) {
       return false;
     }
     return (isL10nLoaded == other.isL10nLoaded);
@@ -29,16 +27,15 @@ class InitModel<AppLocalizationsLocalType,
         'isL10nLoaded': isL10nLoaded,
       };
 
-  static InitModel<AppLocalizationsLocalType, StateModelLocalType> select<
-          AppLocalizationsLocalType,
-          StateModelLocalType extends StateModel<AppLocalizationsLocalType>>(
-    Store<StateModelLocalType> store,
-  ) =>
-      InitModel<AppLocalizationsLocalType, StateModelLocalType>(
-        isL10nLoaded: ((store.state as StateModel<AppLocalizationsLocalType>)
-                    .l10nGuiRitter !=
-                null) &&
-            ((store.state as StateModel<AppLocalizationsLocalType>).l10n !=
-                null),
-      );
+  static InitModel<AppLocalizationsLocalType> select<AppLocalizationsLocalType>(
+    Store<Map<String, dynamic>> store,
+  ) {
+    final state = StateModelWrapper(
+      storeStateMap: store.state,
+    );
+
+    return InitModel<AppLocalizationsLocalType>(
+      isL10nLoaded: (state.l10nGuiRitter != null) && (state.l10n != null),
+    );
+  }
 }

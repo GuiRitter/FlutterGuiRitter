@@ -2,13 +2,10 @@ import 'package:flutter/material.dart'
     show BuildContext, Key, StatelessWidget, Text, TextAlign, TextStyle, Widget;
 import 'package:flutter_guiritter/common/common.import.dart'
     show AppLocalizationsGuiRitter;
-import 'package:flutter_guiritter/model/model.import.dart'
-    show StateModel, L10nModel;
+import 'package:flutter_guiritter/model/model.import.dart' show L10nModel;
 import 'package:flutter_redux/flutter_redux.dart' show StoreConnector;
 
-class TextL10n<AppLocalizationsLocalType,
-        StateModelLocalType extends StateModel<AppLocalizationsLocalType>>
-    extends StatelessWidget {
+class TextL10n<AppLocalizationsLocalType> extends StatelessWidget {
   final String Function(
     AppLocalizationsGuiRitter?,
   )? l10nGuiRitterSelector;
@@ -36,7 +33,7 @@ class TextL10n<AppLocalizationsLocalType,
     TextStyle? style,
     TextAlign? textAlign,
   }) {
-    return TextL10n<AppLocalizationsLocalType, StateModelLocalType>(
+    return TextL10n<AppLocalizationsLocalType>(
       key: key,
       l10nGuiRitterSelector: l10nGuiRitterSelector,
       style: style,
@@ -52,7 +49,7 @@ class TextL10n<AppLocalizationsLocalType,
     TextStyle? style,
     TextAlign? textAlign,
   }) {
-    return TextL10n<AppLocalizationsLocalType, StateModelLocalType>(
+    return TextL10n<AppLocalizationsLocalType>(
       key: key,
       l10nSelector: l10nSelector,
       style: style,
@@ -64,17 +61,16 @@ class TextL10n<AppLocalizationsLocalType,
   Widget build(
     BuildContext context,
   ) =>
-      StoreConnector<StateModelLocalType,
-          L10nModel<AppLocalizationsLocalType, StateModelLocalType>>(
+      StoreConnector<Map<String, dynamic>,
+          L10nModel<AppLocalizationsLocalType>>(
         distinct: true,
-        converter:
-            L10nModel.select<AppLocalizationsLocalType, StateModelLocalType>,
+        converter: L10nModel.select<AppLocalizationsLocalType>,
         builder: connectorBuilder,
       );
 
   Widget connectorBuilder(
     BuildContext context,
-    L10nModel<AppLocalizationsLocalType, StateModelLocalType> l10nModel,
+    L10nModel<AppLocalizationsLocalType> l10nModel,
   ) {
     return Text(
       getText(
@@ -86,7 +82,7 @@ class TextL10n<AppLocalizationsLocalType,
   }
 
   String getText(
-    L10nModel<AppLocalizationsLocalType, StateModelLocalType> l10nModel,
+    L10nModel<AppLocalizationsLocalType> l10nModel,
   ) =>
       (l10nGuiRitterSelector != null)
           ? l10nGuiRitterSelector!(l10nModel.l10nGuiRitter!)

@@ -2,7 +2,7 @@ import 'package:dio/dio.dart' show CancelToken;
 import 'package:flutter_guiritter/common/common.import.dart'
     show HTTPMethod, ResultStatus, Settings;
 import 'package:flutter_guiritter/model/model.import.dart'
-    show BaseRequestModel, LoadingTagModel, Result, StateModel;
+    show BaseRequestModel, LoadingTagModel, Result, StateModelWrapper;
 import 'package:flutter_guiritter/redux/loading/action.dart' as loading_action;
 import 'package:flutter_guiritter/redux/user/action.dart' as user_action;
 import 'package:flutter_guiritter/util/util.import.dart' show buildTag, logger;
@@ -22,7 +22,7 @@ void clearToken() {
   );
 }
 
-ThunkAction<StateModel> get({
+ThunkAction<Map<String, dynamic>> get({
   required String url,
   Map<String, dynamic>? queryParameters,
   Map<String, dynamic> config = const <String, dynamic>{},
@@ -36,7 +36,7 @@ ThunkAction<StateModel> get({
   Future<void> Function()? finallyFunction,
 }) =>
     (
-      Store<StateModel> store,
+      Store<Map<String, dynamic>> store,
     ) async {
       _log('get')
           .raw('url', url)
@@ -63,7 +63,7 @@ ThunkAction<StateModel> get({
       );
     };
 
-ThunkAction<StateModel> post({
+ThunkAction<Map<String, dynamic>> post({
   required String url,
   Map<String, dynamic>? queryParameters,
   BaseRequestModel? data,
@@ -78,7 +78,7 @@ ThunkAction<StateModel> post({
   Future<void> Function()? finallyFunction,
 }) =>
     (
-      Store<StateModel> store,
+      Store<Map<String, dynamic>> store,
     ) async {
       _log('post')
           .raw('url', url)
@@ -178,7 +178,7 @@ Future<Result<dynamic>> _getResult({
   return await request();
 }
 
-ThunkAction<StateModel> _requestAndToggleLoading({
+ThunkAction<Map<String, dynamic>> _requestAndToggleLoading({
   required HTTPMethod method,
   required String url,
   Map<String, dynamic>? queryParameters,
@@ -194,7 +194,7 @@ ThunkAction<StateModel> _requestAndToggleLoading({
   Future<void> Function()? finallyFunction,
 }) =>
     (
-      Store<StateModel> store,
+      Store<Map<String, dynamic>> store,
     ) async {
       _log('_requestAndToggleLoading')
           .raw('url', url)
@@ -236,7 +236,7 @@ ThunkAction<StateModel> _requestAndToggleLoading({
       );
     };
 
-ThunkAction<StateModel> _treatResult({
+ThunkAction<Map<String, dynamic>> _treatResult({
   required Result result,
   required Future<void> Function({
     required Result result,
@@ -248,8 +248,12 @@ ThunkAction<StateModel> _treatResult({
   required LoadingTagModel loadingTag,
 }) =>
     (
-      Store<StateModel> store,
+      Store<Map<String, dynamic>> store,
     ) async {
+      final state = StateModelWrapper(
+        storeStateMap: store.state,
+      );
+
       _log('_treatResult')
           .map('result', result)
           .exists('then', thenFunction)
@@ -274,7 +278,7 @@ ThunkAction<StateModel> _treatResult({
           // do nothing
         } else if (result.message == null) {
           showSnackBar(
-            message: store.state.l10nGuiRitter!.unexpectedError,
+            message: state.l10nGuiRitter!.unexpectedError,
           );
         } else {
           showSnackBar(

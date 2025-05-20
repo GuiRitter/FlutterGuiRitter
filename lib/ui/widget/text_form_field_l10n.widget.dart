@@ -9,13 +9,10 @@ import 'package:flutter/material.dart'
         Widget;
 import 'package:flutter_guiritter/common/common.import.dart'
     as common_gui_ritter show AppLocalizationsGuiRitter;
-import 'package:flutter_guiritter/model/model.import.dart'
-    show L10nModel, StateModel;
+import 'package:flutter_guiritter/model/model.import.dart' show L10nModel;
 import 'package:flutter_redux/flutter_redux.dart' show StoreConnector;
 
-class TextFormFieldL10n<AppLocalizationsLocalType,
-        StateModelLocalType extends StateModel<AppLocalizationsLocalType>>
-    extends StatelessWidget {
+class TextFormFieldL10n<AppLocalizationsLocalType> extends StatelessWidget {
   final String autofillHint;
   final TextEditingController? controller;
 
@@ -55,11 +52,10 @@ class TextFormFieldL10n<AppLocalizationsLocalType,
   Widget build(
     BuildContext context,
   ) =>
-      StoreConnector<StateModelLocalType,
-          L10nModel<AppLocalizationsLocalType, StateModelLocalType>>(
+      StoreConnector<Map<String, dynamic>,
+          L10nModel<AppLocalizationsLocalType>>(
         distinct: true,
-        converter:
-            L10nModel.select<AppLocalizationsLocalType, StateModelLocalType>,
+        converter: L10nModel.select<AppLocalizationsLocalType>,
         builder: connectorBuilder,
       );
 
