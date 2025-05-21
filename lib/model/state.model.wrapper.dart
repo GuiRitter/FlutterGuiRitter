@@ -151,6 +151,7 @@ class StateModelWrapper<AppLocalizationsLocalType> {
         (token != null) ? token.call() : storeStateWrapperCurrent.token;
 
     return {
+      ...storeStateMap,
       StateKey.l10n: newL10n,
       StateKey.l10nGuiRitter: newL10nGuiRitter,
       StateKey.themeMode: newThemeMode,
