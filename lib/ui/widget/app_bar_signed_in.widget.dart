@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart' show BuildContext, Icons, PopupMenuItem;
 import 'package:flutter_guiritter/common/common.import.dart'
     show AppBarPopupMenuEnum, l10nGuiRitter;
-import 'package:flutter_guiritter/model/model.import.dart' show StateModel;
 import 'package:flutter_guiritter/redux/redux.import.dart' show dispatch;
 import 'package:flutter_guiritter/redux/user/action.dart' as user_action;
 import 'package:flutter_guiritter/ui/widget/widget.import.dart'
@@ -63,9 +62,8 @@ List<PopupMenuItem<String>> Function({
           : signedInList;
     };
 
-class AppBarSignedInWidget<AppLocalizationsLocalType,
-        StateModelLocalType extends StateModel<AppLocalizationsLocalType>>
-    extends AppBarCustomWidget<AppLocalizationsLocalType, StateModelLocalType> {
+class AppBarSignedInWidget<AppLocalizationsLocalType>
+    extends AppBarCustomWidget<AppLocalizationsLocalType> {
   AppBarSignedInWidget({
     super.key,
     super.appBarLeading,

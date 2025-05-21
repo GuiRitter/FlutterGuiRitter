@@ -12,4 +12,5 @@ export 'package:flutter_guiritter/model/result.dart' show Result;
 export 'package:flutter_guiritter/model/sign_in.model.dart' show SignInModel;
 export 'package:flutter_guiritter/model/sign_in.request.model.dart'
     show SignInRequestModel;
-export 'package:flutter_guiritter/model/state.model.dart' show StateModel;
+export 'package:flutter_guiritter/model/state.model.wrapper.dart'
+    show StateModelWrapper;

@@ -27,7 +27,6 @@ import 'package:flutter/material.dart'
 import 'package:flutter/services.dart' show Size, SystemUiOverlayStyle;
 import 'package:flutter_guiritter/common/common.import.dart'
     show AppBarPopupMenuEnum, l10nGuiRitter;
-import 'package:flutter_guiritter/model/model.import.dart' show StateModel;
 import 'package:flutter_guiritter/ui/widget/widget.import.dart'
     show ThemeOptionWidget;
 import 'package:flutter_guiritter/util/util.import.dart'
@@ -86,9 +85,8 @@ Future<double> getAppBarElevation({
   }
 }
 
-class AppBarCustomWidget<AppLocalizationsLocalType,
-        StateModelLocalType extends StateModel<AppLocalizationsLocalType>>
-    extends StatelessWidget implements PreferredSizeWidget {
+class AppBarCustomWidget<AppLocalizationsLocalType> extends StatelessWidget
+    implements PreferredSizeWidget {
   final Widget? appBarLeading;
 
   final List<PopupMenuItem<String>> popupMenuItemList =
@@ -150,15 +148,15 @@ class AppBarCustomWidget<AppLocalizationsLocalType,
             context,
           ) {
             final optionList = [
-              ThemeOptionWidget<AppLocalizationsLocalType, StateModelLocalType>(
+              ThemeOptionWidget<AppLocalizationsLocalType>(
                 themeMode: ThemeMode.dark,
                 title: l10nGuiRitter!.darkTheme,
               ),
-              ThemeOptionWidget<AppLocalizationsLocalType, StateModelLocalType>(
+              ThemeOptionWidget<AppLocalizationsLocalType>(
                 themeMode: ThemeMode.light,
                 title: l10nGuiRitter!.lightTheme,
               ),
-              ThemeOptionWidget<AppLocalizationsLocalType, StateModelLocalType>(
+              ThemeOptionWidget<AppLocalizationsLocalType>(
                 themeMode: ThemeMode.system,
                 title: l10nGuiRitter!.systemTheme,
               ),

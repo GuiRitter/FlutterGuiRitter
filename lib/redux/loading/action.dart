@@ -1,13 +1,13 @@
 import 'package:flutter_guiritter/model/model.import.dart'
-    show LoadingTagModel, StateModel;
+    show LoadingTagModel, StateModelWrapper;
 import 'package:redux/redux.dart' show Store;
 import 'package:redux_thunk/redux_thunk.dart' show ThunkAction;
 
-ThunkAction<StateModel> add({
+ThunkAction<Map<String, dynamic>> add({
   required List<LoadingTagModel> list,
 }) =>
     (
-      Store<StateModel> store,
+      Store<Map<String, dynamic>> store,
     ) async =>
         store.dispatch(
           AddLoadingAction(
@@ -15,13 +15,17 @@ ThunkAction<StateModel> add({
           ),
         );
 
-ThunkAction<StateModel> cancel({
+ThunkAction<Map<String, dynamic>> cancel({
   required String id,
 }) =>
     (
-      Store<StateModel> store,
+      Store<Map<String, dynamic>> store,
     ) async {
-      final loadingTag = store.state.loadingTagList.firstWhere(
+      final state = StateModelWrapper(
+        storeStateMap: store.state,
+      );
+
+      final loadingTag = state.loadingTagList.firstWhere(
         LoadingTagModel.idEquals(
           id,
         ),
@@ -30,11 +34,11 @@ ThunkAction<StateModel> cancel({
       loadingTag.cancelToken.cancel();
     };
 
-ThunkAction<StateModel> remove({
+ThunkAction<Map<String, dynamic>> remove({
   required List<String> idList,
 }) =>
     (
-      Store<StateModel> store,
+      Store<Map<String, dynamic>> store,
     ) async =>
         store.dispatch(
           RemoveLoadingAction(

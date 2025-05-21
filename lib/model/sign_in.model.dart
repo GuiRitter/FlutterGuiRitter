@@ -1,11 +1,9 @@
 import 'package:flutter_guiritter/model/model.import.dart'
-    show LoggableModel, StateModel;
+    show LoggableModel, StateModelWrapper;
 import 'package:flutter_guiritter/util/util.import.dart' show hideSecret;
 import 'package:redux/redux.dart' show Store;
 
-class SignInModel<AppLocalizationsLocalType,
-        StateModelLocalType extends StateModel<AppLocalizationsLocalType>>
-    implements LoggableModel {
+class SignInModel<AppLocalizationsLocalType> implements LoggableModel {
   final String? token;
 
   SignInModel({
@@ -22,7 +20,7 @@ class SignInModel<AppLocalizationsLocalType,
   bool operator ==(
     Object other,
   ) {
-    if (other is! SignInModel<AppLocalizationsLocalType, StateModelLocalType>) {
+    if (other is! SignInModel<AppLocalizationsLocalType>) {
       return false;
     }
     if ((token == null) != (other.token == null)) {
@@ -38,12 +36,16 @@ class SignInModel<AppLocalizationsLocalType,
         ),
       };
 
-  static SignInModel<AppLocalizationsLocalType, StateModelLocalType> select<
-          AppLocalizationsLocalType,
-          StateModelLocalType extends StateModel<AppLocalizationsLocalType>>(
-    Store<StateModelLocalType> store,
-  ) =>
-      SignInModel<AppLocalizationsLocalType, StateModelLocalType>(
-        token: (store.state as StateModel<AppLocalizationsLocalType>).token,
-      );
+  static SignInModel<AppLocalizationsLocalType>
+      select<AppLocalizationsLocalType>(
+    Store<Map<String, dynamic>> store,
+  ) {
+    final state = StateModelWrapper(
+      storeStateMap: store.state,
+    );
+
+    return SignInModel<AppLocalizationsLocalType>(
+      token: state.token,
+    );
+  }
 }
