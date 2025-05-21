@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart' show ThemeMode, ValueGetter;
 import 'package:flutter_guiritter/common/common.import.dart'
     show AppLocalizationsGuiRitter, StateKey;
-import 'package:flutter_guiritter/model/model.import.dart' as model_gui_ritter;
+import 'package:flutter_guiritter/model/model.import.dart' show LoadingTagModel;
+import 'package:redux/redux.dart' show Store;
 
 class StateModelWrapper<AppLocalizationsLocalType> {
   final Map<String, dynamic> storeStateMap;
@@ -34,13 +35,12 @@ class StateModelWrapper<AppLocalizationsLocalType> {
         l10nGuiRitter: l10nGuiRitter,
       );
 
-  List<model_gui_ritter.LoadingTagModel> get loadingTagList =>
-      getLoadingTagList(
+  List<LoadingTagModel> get loadingTagList => getLoadingTagList(
         storeStateMap: storeStateMap,
       );
 
   set loadingTagList(
-    List<model_gui_ritter.LoadingTagModel> loadingTagList,
+    List<LoadingTagModel> loadingTagList,
   ) =>
       setLoadingTagList(
         storeStateMap: storeStateMap,
@@ -75,7 +75,7 @@ class StateModelWrapper<AppLocalizationsLocalType> {
     ValueGetter<AppLocalizationsLocalType?>? l10n,
     ValueGetter<AppLocalizationsGuiRitter?>? l10nGuiRitter,
     ValueGetter<ThemeMode>? themeMode,
-    ValueGetter<List<model_gui_ritter.LoadingTagModel>>? loadingTagList,
+    ValueGetter<List<LoadingTagModel>>? loadingTagList,
     ValueGetter<String?>? token,
   }) =>
       buildNewMap(
@@ -88,7 +88,7 @@ class StateModelWrapper<AppLocalizationsLocalType> {
       );
 
   Map<String, dynamic> withLoadingTagList({
-    required List<model_gui_ritter.LoadingTagModel> newLoadingTagList,
+    required List<LoadingTagModel> newLoadingTagList,
   }) =>
       copyWith(
         loadingTagList: () => loadingTagList + newLoadingTagList,
@@ -97,13 +97,13 @@ class StateModelWrapper<AppLocalizationsLocalType> {
   Map<String, dynamic> withoutLoadingTagList({
     required List<String> idList,
   }) {
-    final newLoadingTagList = List<model_gui_ritter.LoadingTagModel>.from(
+    final newLoadingTagList = List<LoadingTagModel>.from(
       loadingTagList,
     );
 
     for (final id in idList) {
       final index = newLoadingTagList.indexWhere(
-        model_gui_ritter.LoadingTagModel.idEquals(
+        LoadingTagModel.idEquals(
           id,
         ),
       );
@@ -123,7 +123,7 @@ class StateModelWrapper<AppLocalizationsLocalType> {
     ValueGetter<AppLocalizationsLocalType?>? l10n,
     ValueGetter<AppLocalizationsGuiRitter?>? l10nGuiRitter,
     ValueGetter<ThemeMode>? themeMode,
-    ValueGetter<List<model_gui_ritter.LoadingTagModel>>? loadingTagList,
+    ValueGetter<List<LoadingTagModel>>? loadingTagList,
     ValueGetter<String?>? token,
   }) {
     final storeStateWrapperCurrent = StateModelWrapper(
@@ -143,7 +143,7 @@ class StateModelWrapper<AppLocalizationsLocalType> {
 
     final newLoadingTagList = (loadingTagList != null)
         ? loadingTagList.call()
-        : List<model_gui_ritter.LoadingTagModel>.from(
+        : List<LoadingTagModel>.from(
             storeStateWrapperCurrent.loadingTagList,
           );
 
@@ -170,11 +170,10 @@ class StateModelWrapper<AppLocalizationsLocalType> {
   }) =>
       storeStateMap[StateKey.l10nGuiRitter] as AppLocalizationsGuiRitter?;
 
-  static List<model_gui_ritter.LoadingTagModel> getLoadingTagList({
+  static List<LoadingTagModel> getLoadingTagList({
     required Map<String, dynamic> storeStateMap,
   }) =>
-      storeStateMap[StateKey.loadingTagList]
-          as List<model_gui_ritter.LoadingTagModel>;
+      storeStateMap[StateKey.loadingTagList] as List<LoadingTagModel>;
 
   static ThemeMode getThemeMode({
     required Map<String, dynamic> storeStateMap,
@@ -185,6 +184,16 @@ class StateModelWrapper<AppLocalizationsLocalType> {
     required Map<String, dynamic> storeStateMap,
   }) =>
       storeStateMap[StateKey.token] as String?;
+
+  static List<LoadingTagModel> selectLoadingTagList(
+    Store<Map<String, dynamic>> store,
+  ) {
+    final state = StateModelWrapper(
+      storeStateMap: store.state,
+    );
+
+    return state.loadingTagList;
+  }
 
   static setL10n<AppLocalizationsLocalType>({
     required Map<String, dynamic> storeStateMap,
@@ -200,7 +209,7 @@ class StateModelWrapper<AppLocalizationsLocalType> {
 
   static setLoadingTagList({
     required Map<String, dynamic> storeStateMap,
-    required List<model_gui_ritter.LoadingTagModel> loadingTagList,
+    required List<LoadingTagModel> loadingTagList,
   }) =>
       storeStateMap[StateKey.loadingTagList] = loadingTagList;
 
