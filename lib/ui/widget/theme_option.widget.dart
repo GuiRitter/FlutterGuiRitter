@@ -13,7 +13,7 @@ import 'package:flutter_guiritter/common/common.import.dart' show Settings;
 import 'package:flutter_guiritter/redux/redux.import.dart' show dispatch;
 import 'package:flutter_guiritter/redux/theme/action.dart' as theme_action
     show ThemeAction;
-import 'package:flutter_guiritter/redux/theme/selector.dart' show select;
+import 'package:flutter_guiritter/redux/theme/selector.dart' show themeSelector;
 import 'package:flutter_guiritter/util/util.import.dart' show logger;
 import 'package:flutter_redux/flutter_redux.dart' show StoreConnector;
 import 'package:shared_preferences/shared_preferences.dart'
@@ -37,7 +37,7 @@ class ThemeOptionWidget<AppLocalizationsLocalType> extends StatelessWidget {
   ) =>
       StoreConnector<Map<String, dynamic>, ThemeMode>(
         distinct: true,
-        converter: select,
+        converter: themeSelector,
         builder: connectorBuilder,
       );
 
