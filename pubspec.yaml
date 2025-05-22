@@ -1,6 +1,6 @@
 name: flutter_guiritter
 description: "Reusable code for my projects"
-version: 1.6.1+9
+version: 1.6.2+10
 homepage:
 
 environment:
@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  flutter_svg: ^2.0.17
  
   intl: 
  

@@ -1,10 +1,8 @@
-import 'package:flutter_guiritter/model/model.import.dart' show StateModel;
 import 'package:flutter_guiritter/ui/widget/widget.import.dart'
     show AppBarCustomWidget;
 
-class AppBarSignedOutWidget<AppLocalizationsLocalType,
-        StateModelLocalType extends StateModel<AppLocalizationsLocalType>>
-    extends AppBarCustomWidget<AppLocalizationsLocalType, StateModelLocalType> {
+class AppBarSignedOutWidget<AppLocalizationsLocalType>
+    extends AppBarCustomWidget<AppLocalizationsLocalType> {
   AppBarSignedOutWidget({
     super.key,
     super.appBarLeading,

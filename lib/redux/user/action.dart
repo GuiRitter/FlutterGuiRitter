@@ -1,7 +1,7 @@
 import 'package:flutter_guiritter/common/common.import.dart'
     show ApiUrl, Settings;
 import 'package:flutter_guiritter/model/model.import.dart'
-    show Result, SignInRequestModel, StateModel;
+    show Result, SignInRequestModel, StateModelWrapper;
 import 'package:flutter_guiritter/redux/api/action.dart' as api_action;
 import 'package:flutter_guiritter/util/util.import.dart' show logger;
 import 'package:redux/redux.dart' show Store;
@@ -11,8 +11,8 @@ import 'package:shared_preferences/shared_preferences.dart'
 
 final _log = logger('user.action');
 
-ThunkAction<StateModel> clearToken() => (
-      Store<StateModel> store,
+ThunkAction<Map<String, dynamic>> clearToken() => (
+      Store<Map<String, dynamic>> store,
     ) async {
       _log('clearToken').print();
 
@@ -31,12 +31,16 @@ ThunkAction<StateModel> clearToken() => (
       );
     };
 
-ThunkAction<StateModel> signIn({
+ThunkAction<Map<String, dynamic>> signIn({
   required SignInRequestModel signInModel,
 }) =>
     (
-      Store<StateModel> store,
+      Store<Map<String, dynamic>> store,
     ) async {
+      final state = StateModelWrapper(
+        storeStateMap: store.state,
+      );
+
       _log('signIn').map('signInModel', signInModel).print();
 
       var prefs = await SharedPreferences.getInstance();
@@ -81,16 +85,15 @@ ThunkAction<StateModel> signIn({
         api_action.post(
           url: ApiUrl.signIn.path,
           data: signInModel,
-          userFriendlyName:
-              store.state.l10nGuiRitter!.loadingTag_validateAndSetToken,
+          userFriendlyName: state.l10nGuiRitter!.loadingTag_validateAndSetToken,
           thenFunction: signInSuccess,
           catchFunction: signInFailure,
         ),
       );
     };
 
-ThunkAction<StateModel> signOut() => (
-      Store<StateModel> store,
+ThunkAction<Map<String, dynamic>> signOut() => (
+      Store<Map<String, dynamic>> store,
     ) async {
       _log('signOut').print();
 
@@ -101,17 +104,21 @@ ThunkAction<StateModel> signOut() => (
       );
     };
 
-ThunkAction<StateModel> validateAndSetToken({
+ThunkAction<Map<String, dynamic>> validateAndSetToken({
   required String? newToken,
 }) =>
     (
-      Store<StateModel> store,
+      Store<Map<String, dynamic>> store,
     ) async {
       _log('validateAndSetToken').secret('newToken', newToken).print();
 
+      final state = StateModelWrapper(
+        storeStateMap: store.state,
+      );
+
       if (newToken == Settings.revalidateToken) {
-        newToken = store.state.token;
-      } else if (store.state.token == newToken) {
+        newToken = state.token;
+      } else if (state.token == newToken) {
         return;
       }
 
@@ -144,8 +151,7 @@ ThunkAction<StateModel> validateAndSetToken({
       store.dispatch(
         api_action.get(
           url: ApiUrl.checkToken.path,
-          userFriendlyName:
-              store.state.l10nGuiRitter!.loadingTag_validateAndSetToken,
+          userFriendlyName: state.l10nGuiRitter!.loadingTag_validateAndSetToken,
           thenFunction: checkTokenSuccess,
           catchFunction: checkTokenFailure,
         ),
