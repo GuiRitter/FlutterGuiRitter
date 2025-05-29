@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart'
     show
+        BoxFit,
         BuildContext,
         Center,
         CircularProgressIndicator,
@@ -14,13 +15,17 @@ import 'package:flutter/material.dart'
 import 'package:flutter_svg/svg.dart' show SvgPicture;
 
 class SplashPage extends StatelessWidget {
-  final SvgPicture background;
-  final SvgPicture logo;
+  final String backgroundAssetName;
+  final String backgroundSemanticsLabel;
+  final String logoAssetName;
+  final String logoSemanticsLabel;
 
   const SplashPage({
     super.key,
-    required this.background,
-    required this.logo,
+    required this.backgroundAssetName,
+    required this.backgroundSemanticsLabel,
+    required this.logoAssetName,
+    required this.logoSemanticsLabel,
   });
 
   @override
@@ -45,12 +50,21 @@ class SplashPage extends StatelessWidget {
         child: Stack(
           // fit: StackFit.passthrough,
           children: [
-            background,
+            SvgPicture.asset(
+              backgroundAssetName,
+              semanticsLabel: backgroundSemanticsLabel,
+              fit: BoxFit.fill,
+              height: mediaSize.height,
+              width: mediaSize.width,
+            ),
             Center(
               child: SizedBox(
                 width: smallestSizeHalf,
                 height: smallestSizeHalf,
-                child: logo,
+                child: SvgPicture.asset(
+                  logoAssetName,
+                  semanticsLabel: logoSemanticsLabel,
+                ),
               ),
             ),
             Center(

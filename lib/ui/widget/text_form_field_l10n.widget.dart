@@ -7,9 +7,9 @@ import 'package:flutter/material.dart'
         TextFormField,
         TextInputType,
         Widget;
-import 'package:flutter_guiritter/common/common.import.dart'
-    as common_gui_ritter show AppLocalizationsGuiRitter;
-import 'package:flutter_guiritter/model/model.import.dart' show L10nModel;
+import 'package:flutter_guiritter/common/_import.dart' as common_gui_ritter
+    show AppLocalizationsGuiRitter;
+import 'package:flutter_guiritter/model/_import.dart' show L10nModel;
 import 'package:flutter_redux/flutter_redux.dart' show StoreConnector;
 
 class TextFormFieldL10n<AppLocalizationsLocalType> extends StatelessWidget {

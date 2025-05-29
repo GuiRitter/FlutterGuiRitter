@@ -4,7 +4,7 @@ import 'package:dio/dio.dart'
     show DioException, ErrorInterceptorHandler, InterceptorsWrapper;
 import 'package:flutter_guiritter/redux/main.reducer.dart' show dispatch;
 import 'package:flutter_guiritter/redux/user/action.dart' as user_action;
-import 'package:flutter_guiritter/util/util.import.dart' show logger;
+import 'package:flutter_guiritter/util/_import.dart' show logger;
 
 final _log = logger('TokenInterceptor');
 

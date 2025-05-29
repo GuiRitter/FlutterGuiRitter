@@ -1,5 +1,4 @@
-import 'package:flutter_guiritter/model/model.import.dart'
-    show StateModelWrapper;
+import 'package:flutter_guiritter/model/_import.dart' show StateModelWrapper;
 import 'package:flutter_guiritter/redux/l10n/action.dart' show L10nAction;
 import 'package:redux/redux.dart' show TypedReducer, combineReducers;
 

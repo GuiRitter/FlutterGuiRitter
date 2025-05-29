@@ -1,4 +1,4 @@
-import 'package:flutter_guiritter/model/model.import.dart'
+import 'package:flutter_guiritter/model/_import.dart'
     show LoadingTagModel, StateModelWrapper;
 import 'package:redux/redux.dart' show Store;
 import 'package:redux_thunk/redux_thunk.dart' show ThunkAction;

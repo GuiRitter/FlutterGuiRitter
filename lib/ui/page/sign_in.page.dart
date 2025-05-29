@@ -16,14 +16,14 @@ import 'package:flutter/material.dart'
         Widget;
 import 'package:flutter/services.dart'
     show AutofillHints, TextInput, TextInputType;
-import 'package:flutter_guiritter/model/model.import.dart'
+import 'package:flutter_guiritter/model/_import.dart'
     show SignInModel, SignInRequestModel;
-import 'package:flutter_guiritter/redux/redux.import.dart' show dispatch;
+import 'package:flutter_guiritter/redux/_import.dart' show dispatch;
 import 'package:flutter_guiritter/redux/user/action.dart' as user_action;
-import 'package:flutter_guiritter/ui/widget/widget.import.dart'
+import 'package:flutter_guiritter/ui/widget/_import.dart'
     show AppBarSignedOutWidget, TextFormFieldL10n, TextL10n;
-import 'package:flutter_guiritter/ui/widget/widget.import.dart' show BodyWidget;
-import 'package:flutter_guiritter/util/util.import.dart' show logger;
+import 'package:flutter_guiritter/ui/widget/_import.dart' show BodyWidget;
+import 'package:flutter_guiritter/util/_import.dart' show logger;
 import 'package:flutter_redux/flutter_redux.dart' show StoreConnector;
 
 final _log = logger('SignInPage');

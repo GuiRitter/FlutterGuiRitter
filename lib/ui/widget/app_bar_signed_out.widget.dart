@@ -1,4 +1,4 @@
-import 'package:flutter_guiritter/ui/widget/widget.import.dart'
+import 'package:flutter_guiritter/ui/widget/_import.dart'
     show AppBarCustomWidget;
 
 class AppBarSignedOutWidget<AppLocalizationsLocalType>

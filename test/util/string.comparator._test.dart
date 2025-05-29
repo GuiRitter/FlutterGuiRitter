@@ -1,4 +1,4 @@
-import 'package:flutter_guiritter/util/util.import.dart' show StringComparator;
+import 'package:flutter_guiritter/util/_import.dart' show StringComparator;
 import 'package:flutter_test/flutter_test.dart' show expect, test;
 
 void main() {

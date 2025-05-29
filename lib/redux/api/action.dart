@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart' show CancelToken;
-import 'package:flutter_guiritter/common/common.import.dart'
+import 'package:flutter_guiritter/common/_import.dart'
     show HTTPMethod, ResultStatus, Settings;
-import 'package:flutter_guiritter/model/model.import.dart'
+import 'package:flutter_guiritter/model/_import.dart'
     show BaseRequestModel, LoadingTagModel, Result, StateModelWrapper;
 import 'package:flutter_guiritter/redux/loading/action.dart' as loading_action;
 import 'package:flutter_guiritter/redux/user/action.dart' as user_action;
-import 'package:flutter_guiritter/util/util.import.dart' show buildTag, logger;
-import 'package:flutter_guiritter/util/util.import.dart' show showSnackBar;
+import 'package:flutter_guiritter/util/_import.dart' show buildTag, logger;
+import 'package:flutter_guiritter/util/_import.dart' show showSnackBar;
 import 'package:redux/redux.dart' show Store;
 import 'package:redux_thunk/redux_thunk.dart' show ThunkAction;
 

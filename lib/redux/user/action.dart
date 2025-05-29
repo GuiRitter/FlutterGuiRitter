@@ -1,9 +1,8 @@
-import 'package:flutter_guiritter/common/common.import.dart'
-    show ApiUrl, Settings;
-import 'package:flutter_guiritter/model/model.import.dart'
+import 'package:flutter_guiritter/common/_import.dart' show ApiUrl, Settings;
+import 'package:flutter_guiritter/model/_import.dart'
     show Result, SignInRequestModel, StateModelWrapper;
 import 'package:flutter_guiritter/redux/api/action.dart' as api_action;
-import 'package:flutter_guiritter/util/util.import.dart' show logger;
+import 'package:flutter_guiritter/util/_import.dart' show logger;
 import 'package:redux/redux.dart' show Store;
 import 'package:redux_thunk/redux_thunk.dart' show ThunkAction;
 import 'package:shared_preferences/shared_preferences.dart'

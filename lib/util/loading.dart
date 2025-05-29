@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart' show CancelToken;
-import 'package:flutter_guiritter/model/model.import.dart' show LoadingTagModel;
-import 'package:flutter_guiritter/util/util.import.dart'
+import 'package:flutter_guiritter/extension/_import.dart'
     show DateTimeNullableExtension;
+import 'package:flutter_guiritter/model/_import.dart' show LoadingTagModel;
 
 LoadingTagModel buildTag({
   required String userFriendlyName,

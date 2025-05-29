@@ -1,9 +1,9 @@
 import 'dart:convert' show jsonEncode;
 
 import 'package:flutter/foundation.dart' show debugPrint;
-import 'package:flutter_guiritter/model/model.import.dart' show LoggableModel;
-import 'package:flutter_guiritter/util/util.import.dart'
+import 'package:flutter_guiritter/extension/_import.dart'
     show DateTimeNullableExtension;
+import 'package:flutter_guiritter/model/_import.dart' show LoggableModel;
 
 dynamic getExistsMark(
   dynamic value,

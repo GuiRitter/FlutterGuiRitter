@@ -1,5 +1,5 @@
-import 'package:flutter_guiritter/common/common.import.dart'
-    as common_gui_ritter show AppLocalizationsGuiRitter, l10nGuiRitter;
+import 'package:flutter_guiritter/common/_import.dart' as common_gui_ritter
+    show AppLocalizationsGuiRitter, l10nGuiRitter;
 import 'package:redux/redux.dart' show Store;
 import 'package:redux_thunk/redux_thunk.dart' show ThunkAction;
 

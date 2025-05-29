@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart' show BuildContext, Icons, PopupMenuItem;
-import 'package:flutter_guiritter/common/common.import.dart'
+import 'package:flutter_guiritter/common/_import.dart'
     show AppBarPopupMenuEnum, l10nGuiRitter;
-import 'package:flutter_guiritter/redux/redux.import.dart' show dispatch;
+import 'package:flutter_guiritter/redux/_import.dart' show dispatch;
 import 'package:flutter_guiritter/redux/user/action.dart' as user_action;
-import 'package:flutter_guiritter/ui/widget/widget.import.dart'
+import 'package:flutter_guiritter/ui/widget/_import.dart'
     show AppBarCustomWidget;
-import 'package:flutter_guiritter/util/util.import.dart'
-    show buildPopupMenuItem;
+import 'package:flutter_guiritter/util/_import.dart' show buildPopupMenuItem;
 
 Map<
     String,

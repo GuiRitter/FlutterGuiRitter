@@ -18,14 +18,13 @@ import 'package:flutter/material.dart'
         StatelessWidget,
         Text,
         Widget;
-import 'package:flutter_guiritter/model/model.import.dart'
-    show StateModelWrapper;
-import 'package:flutter_guiritter/model/model.import.dart' show LoadingTagModel;
+import 'package:flutter_guiritter/model/_import.dart' show StateModelWrapper;
+import 'package:flutter_guiritter/model/_import.dart' show LoadingTagModel;
+import 'package:flutter_guiritter/redux/_import.dart' show dispatch;
 import 'package:flutter_guiritter/redux/loading/action.dart' as loading_action;
-import 'package:flutter_guiritter/redux/redux.import.dart' show dispatch;
-import 'package:flutter_guiritter/ui/widget/widget.import.dart'
+import 'package:flutter_guiritter/ui/widget/_import.dart'
     show AppBarCustomWidget;
-import 'package:flutter_guiritter/util/util.import.dart' show logger;
+import 'package:flutter_guiritter/util/_import.dart' show logger;
 import 'package:flutter_redux/flutter_redux.dart' show StoreConnector;
 
 final _log = logger('LoadingPage');

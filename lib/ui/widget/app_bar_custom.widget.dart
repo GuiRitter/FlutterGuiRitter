@@ -25,11 +25,11 @@ import 'package:flutter/material.dart'
         kToolbarHeight,
         showDialog;
 import 'package:flutter/services.dart' show Size, SystemUiOverlayStyle;
-import 'package:flutter_guiritter/common/common.import.dart'
+import 'package:flutter_guiritter/common/_import.dart'
     show AppBarPopupMenuEnum, l10nGuiRitter;
-import 'package:flutter_guiritter/ui/widget/widget.import.dart'
+import 'package:flutter_guiritter/ui/widget/_import.dart'
     show ThemeOptionWidget;
-import 'package:flutter_guiritter/util/util.import.dart'
+import 'package:flutter_guiritter/util/_import.dart'
     show buildPopupMenuItem, logger;
 
 double? appBarElevation;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart'
     show BuildContext, Key, StatelessWidget, Text, TextAlign, TextStyle, Widget;
-import 'package:flutter_guiritter/common/common.import.dart'
+import 'package:flutter_guiritter/common/_import.dart'
     show AppLocalizationsGuiRitter;
-import 'package:flutter_guiritter/model/model.import.dart' show L10nModel;
+import 'package:flutter_guiritter/model/_import.dart' show L10nModel;
 import 'package:flutter_redux/flutter_redux.dart' show StoreConnector;
 
 class TextL10n<AppLocalizationsLocalType> extends StatelessWidget {

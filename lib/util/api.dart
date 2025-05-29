@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart' show DioException;
-import 'package:flutter_guiritter/common/common.import.dart' show Settings;
+import 'package:flutter_guiritter/common/_import.dart' show Settings;
 
 String treatDioResponse({
   required dynamic response,

@@ -1,5 +1,4 @@
-import 'package:flutter_guiritter/model/model.import.dart'
-    show StateModelWrapper;
+import 'package:flutter_guiritter/model/_import.dart' show StateModelWrapper;
 import 'package:flutter_guiritter/redux/loading/action.dart'
     show AddLoadingAction, CancelLoadingAction, RemoveLoadingAction;
 import 'package:redux/redux.dart' show TypedReducer, combineReducers;

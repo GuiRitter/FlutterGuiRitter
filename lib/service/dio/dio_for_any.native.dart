@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart'
     show CancelToken, Headers, Options, ProgressCallback;
 import 'package:dio/io.dart' show DioForNative;
-import 'package:flutter_guiritter/common/common.import.dart' show Settings;
-import 'package:flutter_guiritter/model/model.import.dart' show Result;
+import 'package:flutter_guiritter/common/_import.dart' show Settings;
+import 'package:flutter_guiritter/model/_import.dart' show Result;
 import 'package:flutter_guiritter/service/dio/dio_for_any.interface.dart'
     show DioForAny;
 import 'package:flutter_guiritter/service/interceptors/token.interceptor.dart'

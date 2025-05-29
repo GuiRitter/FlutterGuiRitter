@@ -1,4 +1,4 @@
-import 'package:flutter_guiritter/model/model.import.dart'
+import 'package:flutter_guiritter/model/_import.dart'
     show LoggableModel, StateModelWrapper;
 import 'package:redux/redux.dart' show Store;
 

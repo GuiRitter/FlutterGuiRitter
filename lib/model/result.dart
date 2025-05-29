@@ -1,9 +1,9 @@
 import 'dart:io' show HttpStatus;
 
 import 'package:dio/dio.dart' show Response, DioException, DioExceptionType;
-import 'package:flutter_guiritter/common/common.import.dart' show ResultStatus;
-import 'package:flutter_guiritter/model/model.import.dart' show LoggableModel;
-import 'package:flutter_guiritter/util/util.import.dart'
+import 'package:flutter_guiritter/common/_import.dart' show ResultStatus;
+import 'package:flutter_guiritter/model/_import.dart' show LoggableModel;
+import 'package:flutter_guiritter/util/_import.dart'
     show treatDioResponse, treatException;
 
 class Result<DataType> implements LoggableModel {
