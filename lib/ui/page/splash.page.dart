@@ -6,26 +6,34 @@ import 'package:flutter/material.dart'
         BuildContext,
         Center,
         CircularProgressIndicator,
+        Color,
         MediaQuery,
         Scaffold,
         SizedBox,
         Stack,
         StatelessWidget,
         Widget;
-import 'package:flutter_svg/svg.dart' show SvgPicture;
+import 'package:flutter_guiritter/common/_import.dart' show MIMEType;
+import 'package:flutter_guiritter/util/_import.dart' show getAssetByMIMEType;
 
 class SplashPage extends StatelessWidget {
   final String backgroundAssetName;
   final String backgroundSemanticsLabel;
+  final MIMEType backgroundMimeType;
   final String logoAssetName;
   final String logoSemanticsLabel;
+  final MIMEType logoMimeType;
+  final Color? circularProgressIndicatorColor;
 
   const SplashPage({
     super.key,
     required this.backgroundAssetName,
     required this.backgroundSemanticsLabel,
+    required this.backgroundMimeType,
     required this.logoAssetName,
     required this.logoSemanticsLabel,
+    required this.logoMimeType,
+    this.circularProgressIndicatorColor,
   });
 
   @override
@@ -50,19 +58,20 @@ class SplashPage extends StatelessWidget {
         child: Stack(
           // fit: StackFit.passthrough,
           children: [
-            SvgPicture.asset(
-              backgroundAssetName,
+            getAssetByMIMEType(
+              mimeType: backgroundMimeType,
+              name: backgroundAssetName,
               semanticsLabel: backgroundSemanticsLabel,
               fit: BoxFit.fill,
-              height: mediaSize.height,
-              width: mediaSize.width,
+              mediaSize: mediaSize,
             ),
             Center(
               child: SizedBox(
                 width: smallestSizeHalf,
                 height: smallestSizeHalf,
-                child: SvgPicture.asset(
-                  logoAssetName,
+                child: getAssetByMIMEType(
+                  mimeType: logoMimeType,
+                  name: logoAssetName,
                   semanticsLabel: logoSemanticsLabel,
                 ),
               ),
@@ -71,7 +80,9 @@ class SplashPage extends StatelessWidget {
               child: SizedBox(
                 width: smallestSizeHalf,
                 height: smallestSizeHalf,
-                child: const CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  color: circularProgressIndicatorColor,
+                ),
               ),
             )
           ],
