@@ -19,5 +19,6 @@ export 'package:flutter_guiritter/util/material.dart'
 export 'package:flutter_guiritter/util/snack_bar.dart' show showSnackBar;
 export 'package:flutter_guiritter/util/string.comparator.dart'
     show StringComparator;
+export 'package:flutter_guiritter/util/uuid.dart' show buildUUID;
 export 'package:flutter_guiritter/util/validation.dart'
     show getRequiredStringError;
