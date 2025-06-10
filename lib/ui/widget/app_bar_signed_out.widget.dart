@@ -8,5 +8,8 @@ class AppBarSignedOutWidget<AppLocalizationsLocalType>
     super.appBarLeading,
     required super.title,
     super.subtitle,
+    super.onHomePopupMenuItemPressedMap,
+    super.popupMenuItemBuilder,
+    super.actionList,
   });
 }

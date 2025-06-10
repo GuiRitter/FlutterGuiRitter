@@ -8,6 +8,7 @@ import 'package:flutter/material.dart'
         CrossAxisAlignment,
         DefaultTextStyle,
         GlobalKey,
+        IconButton,
         Icons,
         MainAxisSize,
         Material,
@@ -92,6 +93,8 @@ class AppBarCustomWidget<AppLocalizationsLocalType> extends StatelessWidget
   final List<PopupMenuItem<String>> popupMenuItemList =
       <PopupMenuItem<String>>[];
 
+  final List<IconButton> actionList = <IconButton>[];
+
   final Map<
       String,
       dynamic Function(
@@ -118,6 +121,7 @@ class AppBarCustomWidget<AppLocalizationsLocalType> extends StatelessWidget
     List<PopupMenuItem<String>> Function({
       required List<PopupMenuItem<String>> popupMenuItemList,
     })? popupMenuItemBuilder,
+    List<IconButton>? actionList,
   }) {
     {
       var popupMenuItemTempList = <PopupMenuItem<String>>[
@@ -179,6 +183,12 @@ class AppBarCustomWidget<AppLocalizationsLocalType> extends StatelessWidget
             onHomePopupMenuItemPressedMap,
           );
     }
+
+    if (actionList != null) {
+      this.actionList.addAll(
+            actionList,
+          );
+    }
   }
 
   @override
@@ -215,6 +225,7 @@ class AppBarCustomWidget<AppLocalizationsLocalType> extends StatelessWidget
       title: title,
       leading: appBarLeading,
       actions: [
+        ...actionList,
         PopupMenuButton<String>(
           itemBuilder: (
             context,
