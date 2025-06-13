@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart' show CancelToken;
-import 'package:flutter_guiritter/model/_import.dart' show LoggableModel;
+import 'package:flutter_guiritter/model/_import.dart' show Loggable;
 
-class LoadingTagModel implements LoggableModel {
+class LoadingTagModel implements Loggable {
   final String id;
 
   final CancelToken cancelToken;

@@ -93,7 +93,7 @@ class TextFormFieldL10n<AppLocalizationsLocalType> extends StatelessWidget {
           ? invalidMessageL10nGuiRitter!(l10nModel.l10nGuiRitter!)
           : (invalidMessageL10n != null)
               ? invalidMessageL10n!(l10nModel.l10n!)
-              : "";
+              : '';
 
   String getLabel(
     L10nModel l10nModel,
@@ -102,5 +102,5 @@ class TextFormFieldL10n<AppLocalizationsLocalType> extends StatelessWidget {
           ? labelL10nGuiRitter!(l10nModel.l10nGuiRitter!)
           : (labelL10n != null)
               ? labelL10n!(l10nModel.l10n!)
-              : "";
+              : '';
 }

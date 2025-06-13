@@ -85,7 +85,7 @@ extension DateTimeNullableExtension on DateTime? {
     }
 
     return DateFormat(
-      "${this!.toIso8601String()}${this!.toISO8601TimeZoneString()}",
+      '${this!.toIso8601String()}${this!.toISO8601TimeZoneString()}',
     ).format(
       this!,
     );
@@ -110,11 +110,11 @@ extension DurationExtension on Duration {
     var hour = inMinutes ~/ 60;
     var minute = inMinutes % 60;
 
-    return "${iso8601TimeZoneOffsetHourFormat.format(
+    return '${iso8601TimeZoneOffsetHourFormat.format(
       hour,
     )}:${iso8601TimeZoneOffsetMinuteFormat.format(
       minute,
-    )}";
+    )}';
   }
 }
 

@@ -1,4 +1,5 @@
-export 'package:flutter_guiritter/extension/data.dart' show MapExtension;
+export 'package:flutter_guiritter/extension/data.dart'
+    show DynamicListExtension, EncodableListExtension, MapExtension;
 export 'package:flutter_guiritter/extension/date_time.dart'
     show
         DateTimeExtension,

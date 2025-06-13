@@ -1,4 +1,3 @@
-import 'package:flutter_guiritter/model/_import.dart'
-    show EncodableModel, LoggableModel;
+import 'package:flutter_guiritter/model/_import.dart' show Encodable, Loggable;
 
-abstract class BaseRequestModel implements LoggableModel, EncodableModel {}
+abstract class BaseRequestModel implements Loggable, Encodable {}

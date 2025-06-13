@@ -1,8 +1,8 @@
 import 'package:flutter_guiritter/model/_import.dart'
-    show LoggableModel, StateModelWrapper;
+    show Loggable, StateModelWrapper;
 import 'package:redux/redux.dart' show Store;
 
-class InitModel<AppLocalizationsLocalType> implements LoggableModel {
+class InitModel<AppLocalizationsLocalType> implements Loggable {
   final bool isL10nLoaded;
 
   InitModel({

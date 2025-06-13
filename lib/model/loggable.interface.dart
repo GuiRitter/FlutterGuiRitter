@@ -1,13 +1,13 @@
 Map<String, dynamic> toLog(
-  LoggableModel item,
+  Loggable item,
 ) =>
     item.asLog();
 
-abstract class LoggableModel {
+abstract class Loggable {
   Map<String, dynamic> asLog();
 }
 
-extension LoggableSetExtension on Set<LoggableModel> {
+extension LoggableSetExtension on Set<Loggable> {
   List<Map<String, dynamic>> asLog() => toList()
       .map(
         toLog,

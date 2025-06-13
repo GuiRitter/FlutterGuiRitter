@@ -74,7 +74,7 @@ class StringComparator {
         ) =>
             previousValue.replaceAll(
           element,
-          "",
+          '',
         ),
       );
 }

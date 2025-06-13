@@ -1,10 +1,10 @@
 import 'package:flutter_guiritter/common/_import.dart'
     show AppLocalizationsGuiRitter;
 import 'package:flutter_guiritter/model/_import.dart'
-    show LoggableModel, StateModelWrapper;
+    show Loggable, StateModelWrapper;
 import 'package:redux/redux.dart' show Store;
 
-class L10nModel<AppLocalizationsLocalType> implements LoggableModel {
+class L10nModel<AppLocalizationsLocalType> implements Loggable {
   final AppLocalizationsGuiRitter? l10nGuiRitter;
   final AppLocalizationsLocalType? l10n;
 

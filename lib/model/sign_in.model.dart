@@ -1,9 +1,9 @@
 import 'package:flutter_guiritter/model/_import.dart'
-    show LoggableModel, StateModelWrapper;
+    show Loggable, StateModelWrapper;
 import 'package:flutter_guiritter/util/_import.dart' show hideSecret;
 import 'package:redux/redux.dart' show Store;
 
-class SignInModel<AppLocalizationsLocalType> implements LoggableModel {
+class SignInModel<AppLocalizationsLocalType> implements Loggable {
   final String? token;
 
   SignInModel({

@@ -1,15 +1,40 @@
+import 'dart:convert' show jsonDecode, jsonEncode;
+
 import 'package:flutter/material.dart' show ThemeMode, ValueGetter;
 import 'package:flutter_guiritter/common/_import.dart'
     show AppLocalizationsGuiRitter, StateKey;
-import 'package:flutter_guiritter/model/_import.dart' show LoadingTagModel;
+import 'package:flutter_guiritter/model/_import.dart'
+    show LoadingTagModel, Serializable;
 import 'package:redux/redux.dart' show Store;
 
-class StateModelWrapper<AppLocalizationsLocalType> {
+class StateModelWrapper<AppLocalizationsLocalType> implements Serializable {
   final Map<String, dynamic> storeStateMap;
 
   StateModelWrapper({
     required this.storeStateMap,
   });
+
+  factory StateModelWrapper.deserialize({
+    required String serialized,
+  }) {
+    final json = jsonDecode(
+      serialized,
+    );
+
+    final storeStateMap = {
+      StateKey.l10n: null,
+      StateKey.l10nGuiRitter: null,
+      StateKey.themeMode: ThemeMode.values.byName(
+        json[StateKey.themeMode],
+      ),
+      StateKey.loadingTagList: <LoadingTagModel>[],
+      StateKey.token: json[StateKey.token],
+    };
+
+    return StateModelWrapper(
+      storeStateMap: storeStateMap,
+    );
+  }
 
   AppLocalizationsLocalType? get l10n => getL10n(
         storeStateMap: storeStateMap,
@@ -85,6 +110,17 @@ class StateModelWrapper<AppLocalizationsLocalType> {
         themeMode: themeMode,
         loadingTagList: loadingTagList,
         token: token,
+      );
+
+  @override
+  String serialize() => jsonEncode(
+        {
+          StateKey.l10n: null,
+          StateKey.l10nGuiRitter: null,
+          StateKey.themeMode: themeMode.name,
+          StateKey.loadingTagList: <LoadingTagModel>[],
+          StateKey.token: token,
+        },
       );
 
   Map<String, dynamic> withLoadingTagList({

@@ -1,3 +1,3 @@
-abstract class EncodableModel {
+abstract class Encodable {
   Map<String, dynamic> toJson();
 }

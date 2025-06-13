@@ -3,7 +3,7 @@ import 'dart:convert' show jsonEncode;
 import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter_guiritter/extension/_import.dart'
     show DateTimeNullableExtension;
-import 'package:flutter_guiritter/model/_import.dart' show LoggableModel;
+import 'package:flutter_guiritter/model/_import.dart' show Loggable;
 
 dynamic getExistsMark(
   dynamic value,
@@ -124,7 +124,7 @@ class Log {
 
   Log map(
     String key,
-    LoggableModel? value,
+    Loggable? value,
   ) {
     addToMap(
       key: key,
@@ -136,7 +136,7 @@ class Log {
 
   Log mapList(
     String key,
-    List<LoggableModel?>? value,
+    List<Loggable?>? value,
   ) {
     addToMap(
       key: key,
@@ -190,7 +190,7 @@ class Log {
   }
 
   Map<String, dynamic>? toLog(
-    LoggableModel? loggableModel,
+    Loggable? loggableModel,
   ) =>
       loggableModel?.asLog();
 }

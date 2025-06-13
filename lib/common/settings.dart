@@ -36,7 +36,7 @@ class Settings {
   static const errorKey = 'error';
 
   static String locale = const Locale.fromSubtags(
-    languageCode: "en",
+    languageCode: 'en',
   ).toString();
 
   static const path = '$appName/api';
@@ -46,6 +46,8 @@ class Settings {
   static const protocol = 'https';
 
   static const revalidateToken = 'REVALIDATE_TOKEN';
+
+  static const stateStorageKey = 'redux state in shared preferences';
 
   static const themeKey = 'theme';
 
