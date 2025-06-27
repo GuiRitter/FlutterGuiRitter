@@ -225,6 +225,9 @@ class AppBarCustomWidget<AppLocalizationsLocalType> extends StatelessWidget
       title: title,
       leading: appBarLeading,
       actions: [
+        // TODO add an action to toggle between standalone insert and sequential insert
+        // most likely to be used on insert pages only
+        // use Icons.add_box and Icons.library_add
         ...actionList,
         PopupMenuButton<String>(
           itemBuilder: (

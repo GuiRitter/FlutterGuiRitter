@@ -1,6 +1,8 @@
 export 'package:flutter_guiritter/common/api_url.enum.dart' show ApiUrl;
 export 'package:flutter_guiritter/common/app_bar_popup_menu.enum.dart'
     show AppBarPopupMenuEnum;
+export 'package:flutter_guiritter/common/card_variant.enum.dart'
+    show CardVariant;
 export 'package:flutter_guiritter/common/http_method.dart' show HTTPMethod;
 export 'package:flutter_guiritter/common/mime_type_enum.dart' show MIMEType;
 export 'package:flutter_guiritter/common/result_status.enum.dart'
