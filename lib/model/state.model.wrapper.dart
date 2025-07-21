@@ -36,6 +36,18 @@ class StateModelWrapper<AppLocalizationsLocalType> implements Serializable {
     );
   }
 
+  double? get cardBorderShapeRadius => getCardBorderShapeRadius(
+        storeStateMap: storeStateMap,
+      );
+
+  set cardBorderShapeRadius(
+    double? cardBorderShapeRadius,
+  ) =>
+      setCardBorderShapeRadius(
+        storeStateMap: storeStateMap,
+        cardBorderShapeRadius: cardBorderShapeRadius,
+      );
+
   AppLocalizationsLocalType? get l10n => getL10n(
         storeStateMap: storeStateMap,
       );
@@ -123,6 +135,19 @@ class StateModelWrapper<AppLocalizationsLocalType> implements Serializable {
         },
       );
 
+  Map<String, dynamic> withCardBorderShapeRadius({
+    required double cardBorderShapeRadius,
+  }) =>
+      buildNewMap(
+        storeStateMap: storeStateMap,
+        l10n: () => l10n,
+        l10nGuiRitter: () => l10nGuiRitter,
+        themeMode: () => themeMode,
+        loadingTagList: () => loadingTagList,
+        token: () => token,
+        cardBorderShapeRadius: () => cardBorderShapeRadius,
+      );
+
   Map<String, dynamic> withLoadingTagList({
     required List<LoadingTagModel> newLoadingTagList,
   }) =>
@@ -161,6 +186,7 @@ class StateModelWrapper<AppLocalizationsLocalType> implements Serializable {
     ValueGetter<ThemeMode>? themeMode,
     ValueGetter<List<LoadingTagModel>>? loadingTagList,
     ValueGetter<String?>? token,
+    ValueGetter<double?>? cardBorderShapeRadius,
   }) {
     final storeStateWrapperCurrent = StateModelWrapper(
       storeStateMap: storeStateMap,
@@ -186,6 +212,10 @@ class StateModelWrapper<AppLocalizationsLocalType> implements Serializable {
     final newToken =
         (token != null) ? token.call() : storeStateWrapperCurrent.token;
 
+    final newCardBorderShapeRadius = (cardBorderShapeRadius != null)
+        ? cardBorderShapeRadius.call()
+        : storeStateWrapperCurrent.cardBorderShapeRadius;
+
     return {
       ...storeStateMap,
       StateKey.l10n: newL10n,
@@ -193,8 +223,14 @@ class StateModelWrapper<AppLocalizationsLocalType> implements Serializable {
       StateKey.themeMode: newThemeMode,
       StateKey.loadingTagList: newLoadingTagList,
       StateKey.token: newToken,
+      StateKey.cardBorderShapeRadius: newCardBorderShapeRadius,
     };
   }
+
+  static double? getCardBorderShapeRadius({
+    required Map<String, dynamic> storeStateMap,
+  }) =>
+      storeStateMap[StateKey.cardBorderShapeRadius] as double?;
 
   static AppLocalizationsLocalType? getL10n<AppLocalizationsLocalType>({
     required Map<String, dynamic> storeStateMap,
@@ -230,6 +266,12 @@ class StateModelWrapper<AppLocalizationsLocalType> implements Serializable {
 
     return state.loadingTagList;
   }
+
+  static setCardBorderShapeRadius({
+    required Map<String, dynamic> storeStateMap,
+    required double? cardBorderShapeRadius,
+  }) =>
+      storeStateMap[StateKey.cardBorderShapeRadius] = cardBorderShapeRadius;
 
   static setL10n<AppLocalizationsLocalType>({
     required Map<String, dynamic> storeStateMap,

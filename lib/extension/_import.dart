@@ -7,4 +7,6 @@ export 'package:flutter_guiritter/extension/date_time.dart'
         DateTimeStringExtension,
         DurationExtension,
         TimeOfDayNullableExtension;
+export 'package:flutter_guiritter/extension/math.dart'
+    show BorderRadiusExtension, RadiusExtension;
 export 'package:flutter_guiritter/extension/string.dart' show StringExtension;

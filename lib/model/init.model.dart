@@ -3,14 +3,14 @@ import 'package:flutter_guiritter/model/_import.dart'
 import 'package:redux/redux.dart' show Store;
 
 class InitModel<AppLocalizationsLocalType> implements Loggable {
-  final bool isL10nLoaded;
+  final bool isEveryInitDataLoaded;
 
   InitModel({
-    required this.isL10nLoaded,
+    required this.isEveryInitDataLoaded,
   });
 
   @override
-  int get hashCode => isL10nLoaded.hashCode;
+  int get hashCode => isEveryInitDataLoaded.hashCode;
 
   @override
   bool operator ==(
@@ -19,12 +19,12 @@ class InitModel<AppLocalizationsLocalType> implements Loggable {
     if (other is! InitModel<AppLocalizationsLocalType>) {
       return false;
     }
-    return (isL10nLoaded == other.isL10nLoaded);
+    return (isEveryInitDataLoaded == other.isEveryInitDataLoaded);
   }
 
   @override
   Map<String, dynamic> asLog() => <String, dynamic>{
-        'isL10nLoaded': isL10nLoaded,
+        'isL10nLoaded': isEveryInitDataLoaded,
       };
 
   static InitModel<AppLocalizationsLocalType> select<AppLocalizationsLocalType>(
@@ -35,7 +35,9 @@ class InitModel<AppLocalizationsLocalType> implements Loggable {
     );
 
     return InitModel<AppLocalizationsLocalType>(
-      isL10nLoaded: (state.l10nGuiRitter != null) && (state.l10n != null),
+      isEveryInitDataLoaded: (state.l10nGuiRitter != null) &&
+          (state.l10n != null) &&
+          (state.cardBorderShapeRadius != null),
     );
   }
 }

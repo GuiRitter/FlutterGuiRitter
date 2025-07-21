@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart'
     show
         BoxFit,
@@ -14,6 +12,8 @@ import 'package:flutter/material.dart'
         StatelessWidget,
         Widget;
 import 'package:flutter_guiritter/common/_import.dart' show MIMEType;
+import 'package:flutter_guiritter/ui/widget/_import.dart'
+    show CardBorderShapeRadiusWidget;
 import 'package:flutter_guiritter/util/_import.dart' show getAssetByMIMEType;
 
 class SplashPage extends StatelessWidget {
@@ -44,10 +44,7 @@ class SplashPage extends StatelessWidget {
       context,
     ).size;
 
-    final smallestSize = min(
-      mediaSize.height,
-      mediaSize.width,
-    );
+    final smallestSize = mediaSize.shortestSide;
 
     final smallestSizeHalf = smallestSize / 2;
 
@@ -84,7 +81,8 @@ class SplashPage extends StatelessWidget {
                   color: circularProgressIndicatorColor,
                 ),
               ),
-            )
+            ),
+            const CardBorderShapeRadiusWidget(),
           ],
         ),
       ),
