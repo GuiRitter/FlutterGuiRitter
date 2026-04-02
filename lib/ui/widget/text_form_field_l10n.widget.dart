@@ -7,7 +7,7 @@ import 'package:flutter/material.dart'
         TextFormField,
         TextInputType,
         Widget;
-import 'package:flutter_guiritter/common/_import.dart' as common_gui_ritter
+import 'package:flutter_guiritter/common/_import.dart'
     show AppLocalizationsGuiRitter;
 import 'package:flutter_guiritter/model/_import.dart' show L10nModel;
 import 'package:flutter_redux/flutter_redux.dart' show StoreConnector;
@@ -17,7 +17,7 @@ class TextFormFieldL10n<AppLocalizationsLocalType> extends StatelessWidget {
   final TextEditingController? controller;
 
   final String Function(
-    common_gui_ritter.AppLocalizationsGuiRitter?,
+    AppLocalizationsGuiRitter?,
   )? invalidMessageL10nGuiRitter;
 
   final String Function(
@@ -27,7 +27,7 @@ class TextFormFieldL10n<AppLocalizationsLocalType> extends StatelessWidget {
   final TextInputType keyboardType;
 
   final String Function(
-    common_gui_ritter.AppLocalizationsGuiRitter?,
+    AppLocalizationsGuiRitter?,
   )? labelL10nGuiRitter;
 
   final String Function(
