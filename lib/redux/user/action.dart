@@ -31,7 +31,7 @@ ThunkAction<Map<String, dynamic>> clearToken() => (
     };
 
 ThunkAction<Map<String, dynamic>> signIn({
-  required SignInRequestModel signInModel,
+  required SignInRequestModel signInRequestModel,
 }) =>
     (
       Store<Map<String, dynamic>> store,
@@ -40,7 +40,7 @@ ThunkAction<Map<String, dynamic>> signIn({
         storeStateMap: store.state,
       );
 
-      _log('signIn').map('signInModel', signInModel).print();
+      _log('signIn').map('signInRequestModel', signInRequestModel).print();
 
       var prefs = await SharedPreferences.getInstance();
 
@@ -83,7 +83,7 @@ ThunkAction<Map<String, dynamic>> signIn({
       store.dispatch(
         api_action.post(
           url: ApiUrl.signIn.path,
-          data: signInModel,
+          data: signInRequestModel,
           userFriendlyName: state.l10nGuiRitter!.loadingTag_validateAndSetToken,
           thenFunction: signInSuccess,
           catchFunction: signInFailure,

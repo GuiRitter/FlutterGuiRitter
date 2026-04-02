@@ -3,6 +3,8 @@ import 'package:flutter_guiritter/model/_import.dart'
 import 'package:flutter_guiritter/util/_import.dart' show hideSecret;
 import 'package:redux/redux.dart' show Store;
 
+/// Represents the token that authorizes the user.
+/// It's not just a [String] because that allows it to be hidden in logs.
 class SignInModel<AppLocalizationsLocalType> implements Loggable {
   final String? token;
 

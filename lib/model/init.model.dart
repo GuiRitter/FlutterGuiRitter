@@ -24,7 +24,7 @@ class InitModel<AppLocalizationsLocalType> implements Loggable {
 
   @override
   Map<String, dynamic> asLog() => <String, dynamic>{
-        'isL10nLoaded': isEveryInitDataLoaded,
+        'isEveryInitDataLoaded': isEveryInitDataLoaded,
       };
 
   static InitModel<AppLocalizationsLocalType> select<AppLocalizationsLocalType>(

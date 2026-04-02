@@ -31,8 +31,8 @@ class L10nModel<AppLocalizationsLocalType> implements Loggable {
 
   @override
   Map<String, dynamic> asLog() => <String, dynamic>{
-        'isSignedIn': l10nGuiRitter,
-        'state': l10n,
+        'l10nGuiRitter': l10nGuiRitter,
+        'l10n': l10n,
       };
 
   static L10nModel<AppLocalizationsLocalType> select<AppLocalizationsLocalType>(

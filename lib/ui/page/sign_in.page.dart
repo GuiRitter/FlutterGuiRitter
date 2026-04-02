@@ -127,7 +127,7 @@ class SignInPage<AppLocalizationsLocalType> extends StatelessWidget {
 
     dispatch(
       user_action.signIn(
-        signInModel: SignInRequestModel(
+        signInRequestModel: SignInRequestModel(
           userId: userIdController.text,
           password: passwordController.text,
         ),
