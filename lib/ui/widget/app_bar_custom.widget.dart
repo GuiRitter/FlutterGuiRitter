@@ -237,7 +237,7 @@ class AppBarCustomWidget<AppLocalizationsLocalType> extends StatelessWidget
           onSelected: (
             value,
           ) =>
-              this.onHomePopupMenuItemPressedMap[value]!(
+              onHomePopupMenuItemPressedMap[value]!(
             context,
           ),
         ),

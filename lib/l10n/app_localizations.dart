@@ -62,15 +62,18 @@ import 'app_localizations_pt.dart';
 /// be consistent with the languages listed in the AppLocalizationsGuiRitter.supportedLocales
 /// property.
 abstract class AppLocalizationsGuiRitter {
-  AppLocalizationsGuiRitter(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizationsGuiRitter(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
   static AppLocalizationsGuiRitter? of(BuildContext context) {
-    return Localizations.of<AppLocalizationsGuiRitter>(context, AppLocalizationsGuiRitter);
+    return Localizations.of<AppLocalizationsGuiRitter>(
+        context, AppLocalizationsGuiRitter);
   }
 
-  static const LocalizationsDelegate<AppLocalizationsGuiRitter> delegate = _AppLocalizationsGuiRitterDelegate();
+  static const LocalizationsDelegate<AppLocalizationsGuiRitter> delegate =
+      _AppLocalizationsGuiRitterDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -82,7 +85,8 @@ abstract class AppLocalizationsGuiRitter {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -258,34 +262,36 @@ abstract class AppLocalizationsGuiRitter {
   String get userNameInvalid;
 }
 
-class _AppLocalizationsGuiRitterDelegate extends LocalizationsDelegate<AppLocalizationsGuiRitter> {
+class _AppLocalizationsGuiRitterDelegate
+    extends LocalizationsDelegate<AppLocalizationsGuiRitter> {
   const _AppLocalizationsGuiRitterDelegate();
 
   @override
   Future<AppLocalizationsGuiRitter> load(Locale locale) {
-    return SynchronousFuture<AppLocalizationsGuiRitter>(lookupAppLocalizationsGuiRitter(locale));
+    return SynchronousFuture<AppLocalizationsGuiRitter>(
+        lookupAppLocalizationsGuiRitter(locale));
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'pt'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['en', 'pt'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsGuiRitterDelegate old) => false;
 }
 
 AppLocalizationsGuiRitter lookupAppLocalizationsGuiRitter(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'en': return AppLocalizationsGuiRitterEn();
-    case 'pt': return AppLocalizationsGuiRitterPt();
+    case 'en':
+      return AppLocalizationsGuiRitterEn();
+    case 'pt':
+      return AppLocalizationsGuiRitterPt();
   }
 
   throw FlutterError(
-    'AppLocalizationsGuiRitter.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'AppLocalizationsGuiRitter.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }
