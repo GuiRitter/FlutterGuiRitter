@@ -1,8 +1,6 @@
 import 'package:flutter_guiritter/common/_import.dart'
     show AppLocalizationsGuiRitter;
-import 'package:flutter_guiritter/model/_import.dart'
-    show Loggable, StateModelWrapper;
-import 'package:redux/redux.dart' show Store;
+import 'package:flutter_guiritter/model/_import.dart' show Loggable;
 
 class L10nModel<AppLocalizationsLocalType> implements Loggable {
   final AppLocalizationsGuiRitter? l10nGuiRitter;
@@ -34,17 +32,4 @@ class L10nModel<AppLocalizationsLocalType> implements Loggable {
         'l10nGuiRitter': l10nGuiRitter,
         'l10n': l10n,
       };
-
-  static L10nModel<AppLocalizationsLocalType> select<AppLocalizationsLocalType>(
-    Store<Map<String, dynamic>> store,
-  ) {
-    final state = StateModelWrapper(
-      storeStateMap: store.state,
-    );
-
-    return L10nModel<AppLocalizationsLocalType>(
-      l10nGuiRitter: state.l10nGuiRitter,
-      l10n: state.l10n,
-    );
-  }
 }

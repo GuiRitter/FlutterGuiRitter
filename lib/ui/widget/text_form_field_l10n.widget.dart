@@ -10,6 +10,7 @@ import 'package:flutter/material.dart'
 import 'package:flutter_guiritter/common/_import.dart'
     show AppLocalizationsGuiRitter;
 import 'package:flutter_guiritter/model/_import.dart' show L10nModel;
+import 'package:flutter_guiritter/redux/_import.dart' show selectL10n;
 import 'package:flutter_redux/flutter_redux.dart' show StoreConnector;
 
 class TextFormFieldL10n<AppLocalizationsLocalType> extends StatelessWidget {
@@ -55,7 +56,7 @@ class TextFormFieldL10n<AppLocalizationsLocalType> extends StatelessWidget {
       StoreConnector<Map<String, dynamic>,
           L10nModel<AppLocalizationsLocalType>>(
         distinct: true,
-        converter: L10nModel.select<AppLocalizationsLocalType>,
+        converter: selectL10n<AppLocalizationsLocalType>,
         builder: connectorBuilder,
       );
 

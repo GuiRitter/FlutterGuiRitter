@@ -18,9 +18,9 @@ import 'package:flutter/material.dart'
         StatelessWidget,
         Text,
         Widget;
-import 'package:flutter_guiritter/model/_import.dart' show StateModelWrapper;
 import 'package:flutter_guiritter/model/_import.dart' show LoadingTagModel;
-import 'package:flutter_guiritter/redux/_import.dart' show dispatch;
+import 'package:flutter_guiritter/redux/_import.dart'
+    show dispatch, selectLoadingTagList;
 import 'package:flutter_guiritter/redux/loading/action.dart' as loading_action;
 import 'package:flutter_guiritter/ui/widget/_import.dart'
     show AppBarCustomWidget;
@@ -43,7 +43,7 @@ class LoadingPage extends StatelessWidget {
   ) =>
       StoreConnector<Map<String, dynamic>, List<LoadingTagModel>>(
         distinct: true,
-        converter: StateModelWrapper.selectLoadingTagList,
+        converter: selectLoadingTagList,
         builder: connectorBuilder,
       );
 

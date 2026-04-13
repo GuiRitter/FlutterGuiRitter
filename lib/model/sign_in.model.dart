@@ -1,7 +1,5 @@
-import 'package:flutter_guiritter/model/_import.dart'
-    show Loggable, StateModelWrapper;
+import 'package:flutter_guiritter/model/_import.dart' show Loggable;
 import 'package:flutter_guiritter/util/_import.dart' show hideSecret;
-import 'package:redux/redux.dart' show Store;
 
 /// Represents the token that authorizes the user.
 /// It's not just a [String] because that allows it to be hidden in logs.
@@ -37,17 +35,4 @@ class SignInModel<AppLocalizationsLocalType> implements Loggable {
           token,
         ),
       };
-
-  static SignInModel<AppLocalizationsLocalType>
-      select<AppLocalizationsLocalType>(
-    Store<Map<String, dynamic>> store,
-  ) {
-    final state = StateModelWrapper(
-      storeStateMap: store.state,
-    );
-
-    return SignInModel<AppLocalizationsLocalType>(
-      token: state.token,
-    );
-  }
 }

@@ -18,7 +18,8 @@ import 'package:flutter/services.dart'
     show AutofillHints, TextInput, TextInputType;
 import 'package:flutter_guiritter/model/_import.dart'
     show SignInModel, SignInRequestModel;
-import 'package:flutter_guiritter/redux/_import.dart' show dispatch;
+import 'package:flutter_guiritter/redux/_import.dart'
+    show dispatch, selectSignIn;
 import 'package:flutter_guiritter/redux/user/action.dart' as user_action;
 import 'package:flutter_guiritter/ui/widget/_import.dart'
     show AppBarSignedOutWidget, TextFormFieldL10n, TextL10n;
@@ -47,7 +48,7 @@ class SignInPage<AppLocalizationsLocalType> extends StatelessWidget {
       StoreConnector<Map<String, dynamic>,
           SignInModel<AppLocalizationsLocalType>>(
         distinct: true,
-        converter: SignInModel.select,
+        converter: selectSignIn,
         builder: connectorBuilder,
       );
 
