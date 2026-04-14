@@ -13,7 +13,7 @@ import 'package:flutter/material.dart'
         Widget;
 import 'package:flutter_guiritter/common/_import.dart' show MIMEType;
 import 'package:flutter_guiritter/ui/widget/_import.dart'
-    show CardBorderShapeRadiusWidget;
+    show CardMaterialDefaultWidget;
 import 'package:flutter_guiritter/util/_import.dart' show getAssetByMIMEType;
 
 class SplashPage extends StatelessWidget {
@@ -82,7 +82,7 @@ class SplashPage extends StatelessWidget {
                 ),
               ),
             ),
-            const CardBorderShapeRadiusWidget(),
+            const CardMaterialDefaultWidget(),
           ],
         ),
       ),

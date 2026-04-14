@@ -21,7 +21,7 @@ import 'package:flutter/material.dart'
 import 'package:flutter_guiritter/common/_import.dart' show appName;
 import 'package:flutter_guiritter/extension/_import.dart'
     show BorderRadiusExtension;
-import 'package:flutter_guiritter/redux/theme/action.dart'
+import 'package:flutter_guiritter/redux/theme/action.dart' as theme_action
     show setCardBorderShapeRadius;
 import 'package:flutter_guiritter/util/_import.dart' show logger;
 
@@ -29,18 +29,18 @@ double? cardBorderShapeRadius;
 
 final GlobalKey cardKey = GlobalKey();
 
-final _log = logger('CardBorderShapeRadiusWidget');
+final _log = logger('CardMaterialDefaultWidget');
 
-Future<double> getCardBorderShapeRadius({
+Future<void> getMaterialDefault({
   required int delay,
 }) async {
-  _log('getCardBorderShapeRadius')
+  _log('getMaterialDefault')
       .raw('delay', delay)
       .raw('cardBorderShapeRadius', cardBorderShapeRadius)
       .print();
 
   if (cardBorderShapeRadius != null) {
-    return cardBorderShapeRadius!;
+    return;
   }
 
   await Future.delayed(
@@ -50,6 +50,8 @@ Future<double> getCardBorderShapeRadius({
   );
 
   final BuildContext? context = cardKey.currentContext;
+
+  _log('getMaterialDefault').exists('context', cardKey.currentContext).print();
 
   if (context != null) {
     final statelessElement = context as StatelessElement;
@@ -79,20 +81,24 @@ Future<double> getCardBorderShapeRadius({
 
     cardBorderShapeRadius = newCardBorderShapeRadius;
 
-    setCardBorderShapeRadius(
+    _log('getMaterialDefault')
+        .exists('cardBorderShapeRadius', newCardBorderShapeRadius)
+        .print();
+
+    theme_action.setCardBorderShapeRadius(
       cardBorderShapeRadius: newCardBorderShapeRadius,
     );
 
-    return newCardBorderShapeRadius;
+    return;
   } else {
-    return await getCardBorderShapeRadius(
+    return await getMaterialDefault(
       delay: delay + 1,
     );
   }
 }
 
-class CardBorderShapeRadiusWidget extends StatelessWidget {
-  const CardBorderShapeRadiusWidget({
+class CardMaterialDefaultWidget extends StatelessWidget {
+  const CardMaterialDefaultWidget({
     super.key,
   });
 
@@ -101,27 +107,34 @@ class CardBorderShapeRadiusWidget extends StatelessWidget {
     BuildContext context,
   ) {
     return FutureBuilder(
-      future: getCardBorderShapeRadius(
+      future: getMaterialDefault(
         delay: 0,
       ),
       builder: (
         context,
         snapshot,
-      ) =>
-          (snapshot.hasData &&
-                  (snapshot.connectionState == ConnectionState.done))
-              ? const Offstage(
-                  offstage: true,
-                  child: SizedBox.shrink(),
-                )
-              : Card.filled(
-                  key: cardKey,
-                  child: const ListTile(
-                    title: Text(
-                      appName,
-                    ),
+      ) {
+        _log('build')
+            .raw('snapshot.hasData', snapshot.hasData)
+            .enum_('snapshot.connectionState', snapshot.connectionState)
+            .raw('cardBorderShapeRadius', cardBorderShapeRadius)
+            .print();
+
+        return (snapshot.hasData &&
+                (snapshot.connectionState == ConnectionState.done))
+            ? const Offstage(
+                offstage: true,
+                child: SizedBox.shrink(),
+              )
+            : Card.filled(
+                key: cardKey,
+                child: const ListTile(
+                  title: Text(
+                    appName,
                   ),
                 ),
+              );
+      },
     );
   }
 }
