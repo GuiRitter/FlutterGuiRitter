@@ -1,5 +1,5 @@
 import 'package:flutter_guiritter/model/_import.dart'
-    show LoadingTagModel, StateModelWrapperOld;
+    show LoadingTagModel, StateModelWrapper;
 import 'package:redux/redux.dart' show Store;
 import 'package:redux_thunk/redux_thunk.dart' show ThunkAction;
 
@@ -21,11 +21,11 @@ ThunkAction<Map<String, dynamic>> cancel({
     (
       Store<Map<String, dynamic>> store,
     ) async {
-      final stateOld = StateModelWrapperOld(
+      final state = StateModelWrapper(
         storeStateMap: store.state,
       );
 
-      final loadingTag = stateOld.loadingTagList.firstWhere(
+      final loadingTag = state.loadingTagList.firstWhere(
         LoadingTagModel.idEquals(
           id,
         ),
