@@ -1,6 +1,6 @@
 import 'package:flutter_guiritter/common/_import.dart' show ApiUrl, Settings;
 import 'package:flutter_guiritter/model/_import.dart'
-    show Result, SignInRequestModel, StateModelWrapperOld, StateModelWrapper;
+    show Result, SignInRequestModel, StateModelWrapper;
 import 'package:flutter_guiritter/redux/api/action.dart' as api_action;
 import 'package:flutter_guiritter/util/_import.dart' show logger;
 import 'package:redux/redux.dart' show Store;
@@ -111,17 +111,13 @@ ThunkAction<Map<String, dynamic>> validateAndSetToken({
     ) async {
       _log('validateAndSetToken').secret('newToken', newToken).print();
 
-      final stateOld = StateModelWrapperOld(
-        storeStateMap: store.state,
-      );
-
       final state = StateModelWrapper(
         storeStateMap: store.state,
       );
 
       if (newToken == Settings.revalidateToken) {
-        newToken = stateOld.token;
-      } else if (stateOld.token == newToken) {
+        newToken = state.token;
+      } else if (state.token == newToken) {
         return;
       }
 

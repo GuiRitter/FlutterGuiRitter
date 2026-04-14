@@ -13,7 +13,8 @@ class StateModelWrapper<AppLocalizationsLocalType>
         model_state.LoadingTagListMixin,
         model_state.L10nMixin<AppLocalizationsLocalType>,
         model_state.L10nGuiRitterMixin,
-        model_state.ThemeModeMixin
+        model_state.ThemeModeMixin,
+        model_state.TokenMixin
     implements Serializable {
   StateModelWrapper({
     required super.storeStateMap,
@@ -34,6 +35,7 @@ class StateModelWrapper<AppLocalizationsLocalType>
         json[StateKey.themeMode],
       ),
       StateKey.loadingTagList: <LoadingTagModel>[],
+      StateKey.token: json[StateKey.token],
     };
 
     return StateModelWrapper(
@@ -46,6 +48,7 @@ class StateModelWrapper<AppLocalizationsLocalType>
     ValueGetter<AppLocalizationsGuiRitter?>? l10nGuiRitter,
     ValueGetter<ThemeMode>? themeMode,
     ValueGetter<List<LoadingTagModel>>? loadingTagList,
+    ValueGetter<String?>? token,
   }) =>
       buildNewMap(
         storeStateMap: storeStateMap,
@@ -53,6 +56,7 @@ class StateModelWrapper<AppLocalizationsLocalType>
         l10nGuiRitter: l10nGuiRitter,
         themeMode: themeMode,
         loadingTagList: loadingTagList,
+        token: token,
       );
 
   @override
@@ -62,6 +66,7 @@ class StateModelWrapper<AppLocalizationsLocalType>
           StateKey.l10nGuiRitter: null,
           StateKey.themeMode: themeMode.name,
           StateKey.loadingTagList: <LoadingTagModel>[],
+          StateKey.token: token,
         },
       );
 
@@ -71,6 +76,7 @@ class StateModelWrapper<AppLocalizationsLocalType>
     ValueGetter<AppLocalizationsGuiRitter?>? l10nGuiRitter,
     ValueGetter<ThemeMode>? themeMode,
     ValueGetter<List<LoadingTagModel>>? loadingTagList,
+    ValueGetter<String?>? token,
   }) {
     final storeStateWrapperCurrent = StateModelWrapper(
       storeStateMap: storeStateMap,
@@ -94,12 +100,16 @@ class StateModelWrapper<AppLocalizationsLocalType>
             storeStateWrapperCurrent.loadingTagList,
           );
 
+    final newToken =
+        (token != null) ? token.call() : storeStateWrapperCurrent.token;
+
     return {
       ...storeStateMap,
       StateKey.l10n: newL10n,
       StateKey.l10nGuiRitter: newL10nGuiRitter,
       StateKey.themeMode: newThemeMode,
       StateKey.loadingTagList: newLoadingTagList,
+      StateKey.token: newToken,
     };
   }
 }

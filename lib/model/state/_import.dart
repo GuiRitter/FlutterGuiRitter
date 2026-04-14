@@ -9,3 +9,4 @@ export 'package:flutter_guiritter/model/state/state.model.wrapper.dart'
     show StateModelWrapper;
 export 'package:flutter_guiritter/model/state/theme_mode.dart'
     show ThemeModeMixin;
+export 'package:flutter_guiritter/model/state/token.dart' show TokenMixin;
