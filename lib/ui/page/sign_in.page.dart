@@ -22,8 +22,7 @@ import 'package:flutter_guiritter/redux/_import.dart'
     show dispatch, selectSignIn;
 import 'package:flutter_guiritter/redux/user/action.dart' as user_action;
 import 'package:flutter_guiritter/ui/widget/_import.dart'
-    show AppBarSignedOutWidget, TextFormFieldL10n, TextL10n;
-import 'package:flutter_guiritter/ui/widget/_import.dart' show BodyWidget;
+    show AppBarSignedOutWidget, BodyWidget, TextFormFieldL10n, TextL10n;
 import 'package:flutter_guiritter/util/_import.dart' show logger;
 import 'package:flutter_redux/flutter_redux.dart' show StoreConnector;
 

@@ -25,8 +25,8 @@ Map<String, dynamic> setCardBorderShapeRadiusReducer(
 ) =>
     StateModelWrapper(
       storeStateMap: stateModelMap,
-    ).withCardBorderShapeRadius(
-      cardBorderShapeRadius: action.cardBorderShapeRadius,
+    ).copyWith(
+      cardBorderShapeRadius: () => action.cardBorderShapeRadius,
     );
 
 Map<String, dynamic> setThemeReducer(

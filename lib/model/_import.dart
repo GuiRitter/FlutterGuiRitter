@@ -14,5 +14,5 @@ export 'package:flutter_guiritter/model/serializable.interface.dart'
 export 'package:flutter_guiritter/model/sign_in.model.dart' show SignInModel;
 export 'package:flutter_guiritter/model/sign_in.request.model.dart'
     show SignInRequestModel;
-export 'package:flutter_guiritter/model/state.model.wrapper.dart'
+export 'package:flutter_guiritter/model/state/state.model.wrapper.dart'
     show StateModelWrapper;

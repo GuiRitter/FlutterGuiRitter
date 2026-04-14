@@ -1,4 +1,5 @@
-import 'package:flutter_guiritter/model/_import.dart' show StateModelWrapper;
+import 'package:flutter_guiritter/model/_import.dart'
+    show LoadingTagModel, StateModelWrapper;
 import 'package:flutter_guiritter/redux/loading/action.dart'
     show AddLoadingAction, CancelLoadingAction, RemoveLoadingAction;
 import 'package:redux/redux.dart' show TypedReducer, combineReducers;
@@ -57,3 +58,36 @@ Map<String, dynamic> removeLoadingReducer(
     ).withoutLoadingTagList(
       idList: action.idList,
     );
+
+extension LoadingExtension on StateModelWrapper {
+  Map<String, dynamic> withLoadingTagList({
+    required List<LoadingTagModel> newLoadingTagList,
+  }) =>
+      copyWith(
+        loadingTagList: () => loadingTagList + newLoadingTagList,
+      );
+
+  Map<String, dynamic> withoutLoadingTagList({
+    required List<String> idList,
+  }) {
+    final newLoadingTagList = List<LoadingTagModel>.from(
+      loadingTagList,
+    );
+
+    for (final id in idList) {
+      final index = newLoadingTagList.indexWhere(
+        LoadingTagModel.idEquals(
+          id,
+        ),
+      );
+
+      newLoadingTagList.removeAt(
+        index,
+      );
+    }
+
+    return copyWith(
+      loadingTagList: () => newLoadingTagList,
+    );
+  }
+}
