@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart' show ThemeMode;
 import 'package:flutter_guiritter/model/_import.dart'
-    show LoadingTagModel, StateModelWrapperOld;
+    show LoadingTagModel, StateModelWrapper;
 import 'package:flutter_test/flutter_test.dart' show expect, test;
 
 void main() {
@@ -16,26 +16,26 @@ void main() {
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dnZWRJbkFzIjoiYWRtaW4iLCJpYXQiOjE0MjI3Nzk2Mzh9.gzSraSYS8EXBxLN _oWnFSRgCzcmJmMjLiuyu5CSpyHI='
       };
 
-      final stateOld = StateModelWrapperOld(
+      final state = StateModelWrapper(
         storeStateMap: stateDeserializedExpected,
       );
 
-      final stateSerializedActualOld = stateOld.serialize();
+      final stateSerializedActual = state.serialize();
       const stateSerializedExpected =
           '{"l10n":null,"l10nGuiRitter":null,"themeMode":"dark","loadingTagList":[],"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dnZWRJbkFzIjoiYWRtaW4iLCJpYXQiOjE0MjI3Nzk2Mzh9.gzSraSYS8EXBxLN _oWnFSRgCzcmJmMjLiuyu5CSpyHI="}';
 
       expect(
-        stateSerializedActualOld,
+        stateSerializedActual,
         stateSerializedExpected,
         reason: 'serialized',
       );
 
-      final stateDeserializedActualOld = StateModelWrapperOld.deserialize(
+      final stateDeserializedActual = StateModelWrapper.deserialize(
         serialized: stateSerializedExpected,
       ).storeStateMap;
 
       expect(
-        stateDeserializedActualOld,
+        stateDeserializedActual,
         stateDeserializedExpected,
         reason: 'deserialized',
       );
