@@ -7,14 +7,14 @@ import 'package:flutter_guiritter/model/_import.dart'
     show LoadingTagModel, Serializable;
 import 'package:redux/redux.dart' show Store;
 
-class StateModelWrapper<AppLocalizationsLocalType> implements Serializable {
+class StateModelWrapperOld<AppLocalizationsLocalType> implements Serializable {
   final Map<String, dynamic> storeStateMap;
 
-  StateModelWrapper({
+  StateModelWrapperOld({
     required this.storeStateMap,
   });
 
-  factory StateModelWrapper.deserialize({
+  factory StateModelWrapperOld.deserialize({
     required String serialized,
   }) {
     final json = jsonDecode(
@@ -31,7 +31,7 @@ class StateModelWrapper<AppLocalizationsLocalType> implements Serializable {
       StateKey.token: json[StateKey.token],
     };
 
-    return StateModelWrapper(
+    return StateModelWrapperOld(
       storeStateMap: storeStateMap,
     );
   }
@@ -188,33 +188,33 @@ class StateModelWrapper<AppLocalizationsLocalType> implements Serializable {
     ValueGetter<String?>? token,
     ValueGetter<double?>? cardBorderShapeRadius,
   }) {
-    final storeStateWrapperCurrent = StateModelWrapper(
+    final storeStateWrapperCurrentOld = StateModelWrapperOld(
       storeStateMap: storeStateMap,
     );
 
     final newL10n =
-        (l10n != null) ? l10n.call() : storeStateWrapperCurrent.l10n;
+        (l10n != null) ? l10n.call() : storeStateWrapperCurrentOld.l10n;
 
     final newL10nGuiRitter = (l10nGuiRitter != null)
         ? l10nGuiRitter.call()
-        : storeStateWrapperCurrent.l10nGuiRitter;
+        : storeStateWrapperCurrentOld.l10nGuiRitter;
 
     final newThemeMode = (themeMode != null)
         ? themeMode.call()
-        : storeStateWrapperCurrent.themeMode;
+        : storeStateWrapperCurrentOld.themeMode;
 
     final newLoadingTagList = (loadingTagList != null)
         ? loadingTagList.call()
         : List<LoadingTagModel>.from(
-            storeStateWrapperCurrent.loadingTagList,
+            storeStateWrapperCurrentOld.loadingTagList,
           );
 
     final newToken =
-        (token != null) ? token.call() : storeStateWrapperCurrent.token;
+        (token != null) ? token.call() : storeStateWrapperCurrentOld.token;
 
     final newCardBorderShapeRadius = (cardBorderShapeRadius != null)
         ? cardBorderShapeRadius.call()
-        : storeStateWrapperCurrent.cardBorderShapeRadius;
+        : storeStateWrapperCurrentOld.cardBorderShapeRadius;
 
     return {
       ...storeStateMap,
@@ -260,11 +260,11 @@ class StateModelWrapper<AppLocalizationsLocalType> implements Serializable {
   static List<LoadingTagModel> selectLoadingTagList(
     Store<Map<String, dynamic>> store,
   ) {
-    final state = StateModelWrapper(
+    final stateOld = StateModelWrapperOld(
       storeStateMap: store.state,
     );
 
-    return state.loadingTagList;
+    return stateOld.loadingTagList;
   }
 
   static setCardBorderShapeRadius({

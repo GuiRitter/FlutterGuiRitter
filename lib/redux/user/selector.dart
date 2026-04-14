@@ -1,15 +1,15 @@
 import 'package:flutter_guiritter/model/_import.dart' show SignInModel;
-import 'package:flutter_guiritter/model/_import.dart' show StateModelWrapper;
+import 'package:flutter_guiritter/model/_import.dart' show StateModelWrapperOld;
 import 'package:redux/redux.dart' show Store;
 
 SignInModel<AppLocalizationsLocalType> selectSignIn<AppLocalizationsLocalType>(
   Store<Map<String, dynamic>> store,
 ) {
-  final state = StateModelWrapper(
+  final stateOld = StateModelWrapperOld(
     storeStateMap: store.state,
   );
 
   return SignInModel<AppLocalizationsLocalType>(
-    token: state.token,
+    token: stateOld.token,
   );
 }

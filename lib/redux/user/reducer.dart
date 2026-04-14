@@ -1,4 +1,4 @@
-import 'package:flutter_guiritter/model/_import.dart' show StateModelWrapper;
+import 'package:flutter_guiritter/model/_import.dart' show StateModelWrapperOld;
 import 'package:flutter_guiritter/redux/user/action.dart'
     show AuthenticationAction;
 import 'package:redux/redux.dart' show TypedReducer, combineReducers;
@@ -18,7 +18,7 @@ Map<String, dynamic> setTokenReducer(
   Map<String, dynamic> stateModelMap,
   AuthenticationAction action,
 ) =>
-    StateModelWrapper(
+    StateModelWrapperOld(
       storeStateMap: stateModelMap,
     ).copyWith(
       token: () => action.token,

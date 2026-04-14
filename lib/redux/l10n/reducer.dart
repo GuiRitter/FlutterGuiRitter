@@ -1,4 +1,4 @@
-import 'package:flutter_guiritter/model/_import.dart' show StateModelWrapper;
+import 'package:flutter_guiritter/model/_import.dart' show StateModelWrapperOld;
 import 'package:flutter_guiritter/redux/l10n/action.dart' show L10nAction;
 import 'package:redux/redux.dart' show TypedReducer, combineReducers;
 
@@ -21,7 +21,7 @@ Map<String, dynamic> setL10nReducer<AppLocalizationsLocalType>(
   Map<String, dynamic> stateModelMap,
   L10nAction<AppLocalizationsLocalType> action,
 ) =>
-    StateModelWrapper(
+    StateModelWrapperOld(
       storeStateMap: stateModelMap,
     ).copyWith(
       l10n: () => action.l10n,

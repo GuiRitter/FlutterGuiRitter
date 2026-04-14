@@ -1,4 +1,4 @@
-import 'package:flutter_guiritter/model/_import.dart' show StateModelWrapper;
+import 'package:flutter_guiritter/model/_import.dart' show StateModelWrapperOld;
 import 'package:flutter_guiritter/redux/loading/action.dart'
     show AddLoadingAction, CancelLoadingAction, RemoveLoadingAction;
 import 'package:redux/redux.dart' show TypedReducer, combineReducers;
@@ -30,7 +30,7 @@ Map<String, dynamic> addLoadingReducer(
   Map<String, dynamic> stateModelMap,
   AddLoadingAction action,
 ) =>
-    StateModelWrapper(
+    StateModelWrapperOld(
       storeStateMap: stateModelMap,
     ).withLoadingTagList(
       newLoadingTagList: action.list,
@@ -40,7 +40,7 @@ Map<String, dynamic> cancelLoadingReducer(
   Map<String, dynamic> stateModelMap,
   CancelLoadingAction action,
 ) =>
-    StateModelWrapper(
+    StateModelWrapperOld(
       storeStateMap: stateModelMap,
     ).withoutLoadingTagList(
       idList: [
@@ -52,7 +52,7 @@ Map<String, dynamic> removeLoadingReducer(
   Map<String, dynamic> stateModelMap,
   RemoveLoadingAction action,
 ) =>
-    StateModelWrapper(
+    StateModelWrapperOld(
       storeStateMap: stateModelMap,
     ).withoutLoadingTagList(
       idList: action.idList,

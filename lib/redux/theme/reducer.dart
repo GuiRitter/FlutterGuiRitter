@@ -1,4 +1,4 @@
-import 'package:flutter_guiritter/model/_import.dart' show StateModelWrapper;
+import 'package:flutter_guiritter/model/_import.dart' show StateModelWrapperOld;
 import 'package:flutter_guiritter/redux/theme/action.dart'
     show CardBorderShapeRadiusAction, ThemeAction;
 import 'package:redux/redux.dart' show TypedReducer, combineReducers;
@@ -23,7 +23,7 @@ Map<String, dynamic> setCardBorderShapeRadiusReducer(
   Map<String, dynamic> stateModelMap,
   CardBorderShapeRadiusAction action,
 ) =>
-    StateModelWrapper(
+    StateModelWrapperOld(
       storeStateMap: stateModelMap,
     ).withCardBorderShapeRadius(
       cardBorderShapeRadius: action.cardBorderShapeRadius,
@@ -33,7 +33,7 @@ Map<String, dynamic> setThemeReducer(
   Map<String, dynamic> stateModelMap,
   ThemeAction action,
 ) =>
-    StateModelWrapper(
+    StateModelWrapperOld(
       storeStateMap: stateModelMap,
     ).copyWith(
       themeMode: () => action.themeMode,
