@@ -2,7 +2,7 @@ import 'package:dio/dio.dart' show CancelToken;
 import 'package:flutter_guiritter/common/_import.dart'
     show HTTPMethod, ResultStatus, Settings;
 import 'package:flutter_guiritter/model/_import.dart'
-    show BaseRequestModel, LoadingTagModel, Result, StateModelWrapperOld;
+    show BaseRequestModel, LoadingTagModel, Result, StateModelWrapper;
 import 'package:flutter_guiritter/redux/loading/action.dart' as loading_action;
 import 'package:flutter_guiritter/redux/user/action.dart' as user_action;
 import 'package:flutter_guiritter/util/_import.dart' show buildTag, logger;
@@ -250,7 +250,7 @@ ThunkAction<Map<String, dynamic>> _treatResult({
     (
       Store<Map<String, dynamic>> store,
     ) async {
-      final stateOld = StateModelWrapperOld(
+      final state = StateModelWrapper(
         storeStateMap: store.state,
       );
 
@@ -278,7 +278,7 @@ ThunkAction<Map<String, dynamic>> _treatResult({
           // do nothing
         } else if (result.message == null) {
           showSnackBar(
-            message: stateOld.l10nGuiRitter!.unexpectedError,
+            message: state.l10nGuiRitter!.unexpectedError,
           );
         } else {
           showSnackBar(

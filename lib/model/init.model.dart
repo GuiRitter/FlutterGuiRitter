@@ -1,5 +1,5 @@
 import 'package:flutter_guiritter/model/_import.dart'
-    show Loggable, StateModelWrapperOld;
+    show Loggable, StateModelWrapperOld, StateModelWrapper;
 import 'package:redux/redux.dart' show Store;
 
 class InitModel<AppLocalizationsLocalType> implements Loggable {
@@ -34,9 +34,13 @@ class InitModel<AppLocalizationsLocalType> implements Loggable {
       storeStateMap: store.state,
     );
 
+    final state = StateModelWrapper(
+      storeStateMap: store.state,
+    );
+
     return InitModel<AppLocalizationsLocalType>(
-      isEveryInitDataLoaded: (stateOld.l10nGuiRitter != null) &&
-          (stateOld.l10n != null) &&
+      isEveryInitDataLoaded: (state.l10nGuiRitter != null) &&
+          (state.l10n != null) &&
           (stateOld.cardBorderShapeRadius != null),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter_guiritter/common/_import.dart' show ApiUrl, Settings;
 import 'package:flutter_guiritter/model/_import.dart'
-    show Result, SignInRequestModel, StateModelWrapperOld;
+    show Result, SignInRequestModel, StateModelWrapperOld, StateModelWrapper;
 import 'package:flutter_guiritter/redux/api/action.dart' as api_action;
 import 'package:flutter_guiritter/util/_import.dart' show logger;
 import 'package:redux/redux.dart' show Store;
@@ -36,7 +36,7 @@ ThunkAction<Map<String, dynamic>> signIn({
     (
       Store<Map<String, dynamic>> store,
     ) async {
-      final stateOld = StateModelWrapperOld(
+      final state = StateModelWrapper(
         storeStateMap: store.state,
       );
 
@@ -84,8 +84,7 @@ ThunkAction<Map<String, dynamic>> signIn({
         api_action.post(
           url: ApiUrl.signIn.path,
           data: signInRequestModel,
-          userFriendlyName:
-              stateOld.l10nGuiRitter!.loadingTag_validateAndSetToken,
+          userFriendlyName: state.l10nGuiRitter!.loadingTag_validateAndSetToken,
           thenFunction: signInSuccess,
           catchFunction: signInFailure,
         ),
@@ -113,6 +112,10 @@ ThunkAction<Map<String, dynamic>> validateAndSetToken({
       _log('validateAndSetToken').secret('newToken', newToken).print();
 
       final stateOld = StateModelWrapperOld(
+        storeStateMap: store.state,
+      );
+
+      final state = StateModelWrapper(
         storeStateMap: store.state,
       );
 
@@ -151,8 +154,7 @@ ThunkAction<Map<String, dynamic>> validateAndSetToken({
       store.dispatch(
         api_action.get(
           url: ApiUrl.checkToken.path,
-          userFriendlyName:
-              stateOld.l10nGuiRitter!.loadingTag_validateAndSetToken,
+          userFriendlyName: state.l10nGuiRitter!.loadingTag_validateAndSetToken,
           thenFunction: checkTokenSuccess,
           catchFunction: checkTokenFailure,
         ),
