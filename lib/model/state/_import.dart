@@ -5,6 +5,8 @@ export 'package:flutter_guiritter/model/state/l10n_guiritter.dart'
     show L10nGuiRitterMixin;
 export 'package:flutter_guiritter/model/state/loading_tag_list.dart'
     show LoadingTagListMixin;
+export 'package:flutter_guiritter/model/state/radius.border.shape.card.dart'
+    show CardBorderShapeRadiusMixin;
 export 'package:flutter_guiritter/model/state/state.model.wrapper.dart'
     show StateModelWrapper;
 export 'package:flutter_guiritter/model/state/theme_mode.dart'

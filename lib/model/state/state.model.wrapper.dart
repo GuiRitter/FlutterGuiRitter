@@ -10,6 +10,7 @@ import 'package:flutter_guiritter/model/state/_import.dart' as model_state;
 class StateModelWrapper<AppLocalizationsLocalType>
     extends model_state.BaseStateModelWrapper
     with
+        model_state.CardBorderShapeRadiusMixin,
         model_state.LoadingTagListMixin,
         model_state.L10nMixin<AppLocalizationsLocalType>,
         model_state.L10nGuiRitterMixin,
@@ -49,6 +50,7 @@ class StateModelWrapper<AppLocalizationsLocalType>
     ValueGetter<ThemeMode>? themeMode,
     ValueGetter<List<LoadingTagModel>>? loadingTagList,
     ValueGetter<String?>? token,
+    ValueGetter<double?>? cardBorderShapeRadius,
   }) =>
       buildNewMap(
         storeStateMap: storeStateMap,
@@ -57,6 +59,7 @@ class StateModelWrapper<AppLocalizationsLocalType>
         themeMode: themeMode,
         loadingTagList: loadingTagList,
         token: token,
+        cardBorderShapeRadius: cardBorderShapeRadius,
       );
 
   @override
@@ -77,6 +80,7 @@ class StateModelWrapper<AppLocalizationsLocalType>
     ValueGetter<ThemeMode>? themeMode,
     ValueGetter<List<LoadingTagModel>>? loadingTagList,
     ValueGetter<String?>? token,
+    ValueGetter<double?>? cardBorderShapeRadius,
   }) {
     final storeStateWrapperCurrent = StateModelWrapper(
       storeStateMap: storeStateMap,
@@ -103,6 +107,10 @@ class StateModelWrapper<AppLocalizationsLocalType>
     final newToken =
         (token != null) ? token.call() : storeStateWrapperCurrent.token;
 
+    final newCardBorderShapeRadius = (cardBorderShapeRadius != null)
+        ? cardBorderShapeRadius.call()
+        : storeStateWrapperCurrent.cardBorderShapeRadius;
+
     return {
       ...storeStateMap,
       StateKey.l10n: newL10n,
@@ -110,6 +118,7 @@ class StateModelWrapper<AppLocalizationsLocalType>
       StateKey.themeMode: newThemeMode,
       StateKey.loadingTagList: newLoadingTagList,
       StateKey.token: newToken,
+      StateKey.cardBorderShapeRadius: newCardBorderShapeRadius,
     };
   }
 }
