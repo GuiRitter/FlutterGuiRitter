@@ -1,6 +1,6 @@
 import 'dart:convert' show jsonDecode, jsonEncode;
 
-import 'package:flutter/material.dart' show ValueGetter;
+import 'package:flutter/material.dart' show ThemeMode, ValueGetter;
 import 'package:flutter_guiritter/common/_import.dart'
     show AppLocalizationsGuiRitter, StateKey;
 import 'package:flutter_guiritter/model/_import.dart'
@@ -12,7 +12,8 @@ class StateModelWrapper<AppLocalizationsLocalType>
     with
         model_state.LoadingTagListMixin,
         model_state.L10nMixin<AppLocalizationsLocalType>,
-        model_state.L10nGuiRitterMixin
+        model_state.L10nGuiRitterMixin,
+        model_state.ThemeModeMixin
     implements Serializable {
   StateModelWrapper({
     required super.storeStateMap,
@@ -29,6 +30,9 @@ class StateModelWrapper<AppLocalizationsLocalType>
     final storeStateMap = {
       StateKey.l10n: null,
       StateKey.l10nGuiRitter: null,
+      StateKey.themeMode: ThemeMode.values.byName(
+        json[StateKey.themeMode],
+      ),
       StateKey.loadingTagList: <LoadingTagModel>[],
     };
 
@@ -40,12 +44,14 @@ class StateModelWrapper<AppLocalizationsLocalType>
   Map<String, dynamic> copyWith({
     ValueGetter<AppLocalizationsLocalType?>? l10n,
     ValueGetter<AppLocalizationsGuiRitter?>? l10nGuiRitter,
+    ValueGetter<ThemeMode>? themeMode,
     ValueGetter<List<LoadingTagModel>>? loadingTagList,
   }) =>
       buildNewMap(
         storeStateMap: storeStateMap,
         l10n: l10n,
         l10nGuiRitter: l10nGuiRitter,
+        themeMode: themeMode,
         loadingTagList: loadingTagList,
       );
 
@@ -54,6 +60,7 @@ class StateModelWrapper<AppLocalizationsLocalType>
         {
           StateKey.l10n: null,
           StateKey.l10nGuiRitter: null,
+          StateKey.themeMode: themeMode.name,
           StateKey.loadingTagList: <LoadingTagModel>[],
         },
       );
@@ -62,6 +69,7 @@ class StateModelWrapper<AppLocalizationsLocalType>
     required Map<String, dynamic> storeStateMap,
     ValueGetter<AppLocalizationsLocalType?>? l10n,
     ValueGetter<AppLocalizationsGuiRitter?>? l10nGuiRitter,
+    ValueGetter<ThemeMode>? themeMode,
     ValueGetter<List<LoadingTagModel>>? loadingTagList,
   }) {
     final storeStateWrapperCurrent = StateModelWrapper(
@@ -76,6 +84,10 @@ class StateModelWrapper<AppLocalizationsLocalType>
         ? l10nGuiRitter.call()
         : storeStateWrapperCurrent.l10nGuiRitter;
 
+    final newThemeMode = (themeMode != null)
+        ? themeMode.call()
+        : storeStateWrapperCurrent.themeMode;
+
     final newLoadingTagList = (loadingTagList != null)
         ? loadingTagList.call()
         : List<LoadingTagModel>.from(
@@ -86,6 +98,7 @@ class StateModelWrapper<AppLocalizationsLocalType>
       ...storeStateMap,
       StateKey.l10n: newL10n,
       StateKey.l10nGuiRitter: newL10nGuiRitter,
+      StateKey.themeMode: newThemeMode,
       StateKey.loadingTagList: newLoadingTagList,
     };
   }
