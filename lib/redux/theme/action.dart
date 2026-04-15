@@ -1,3 +1,5 @@
+import 'dart:ui' show Color;
+
 import 'package:flutter/material.dart' show ThemeMode;
 import 'package:flutter_guiritter/redux/_import.dart' show dispatch;
 import 'package:flutter_guiritter/util/_import.dart' show logger;
@@ -20,6 +22,18 @@ void setCardBorderShapeRadius({
   );
 }
 
+void setCardColor({
+  required Color cardColor,
+}) {
+  _log('setCardColor').asString('cardColor', cardColor).print();
+
+  dispatch(
+    CardColorAction(
+      cardColor: cardColor,
+    ),
+  );
+}
+
 ThunkAction<Map<String, dynamic>> setTheme<AppLocalizationsLocalType>({
   required ThemeMode themeMode,
 }) =>
@@ -37,6 +51,14 @@ class CardBorderShapeRadiusAction {
 
   const CardBorderShapeRadiusAction({
     required this.cardBorderShapeRadius,
+  });
+}
+
+class CardColorAction {
+  final Color cardColor;
+
+  const CardColorAction({
+    required this.cardColor,
   });
 }
 

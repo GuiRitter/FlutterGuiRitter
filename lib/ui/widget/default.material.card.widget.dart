@@ -1,3 +1,5 @@
+import 'dart:ui' show Color;
+
 import 'package:flutter/material.dart'
     show
         BorderRadius,
@@ -22,10 +24,12 @@ import 'package:flutter_guiritter/common/_import.dart' show appName;
 import 'package:flutter_guiritter/extension/_import.dart'
     show BorderRadiusExtension;
 import 'package:flutter_guiritter/redux/theme/action.dart' as theme_action
-    show setCardBorderShapeRadius;
+    show setCardBorderShapeRadius, setCardColor;
 import 'package:flutter_guiritter/util/_import.dart' show logger;
 
 double? cardBorderShapeRadius;
+
+Color? cardColor;
 
 final GlobalKey cardKey = GlobalKey();
 
@@ -37,9 +41,10 @@ Future<void> getMaterialDefault({
   _log('getMaterialDefault')
       .raw('delay', delay)
       .raw('cardBorderShapeRadius', cardBorderShapeRadius)
+      .exists('cardColor', cardColor)
       .print();
 
-  if (cardBorderShapeRadius != null) {
+  if ((cardBorderShapeRadius != null) && (cardColor != null)) {
     return;
   }
 
@@ -72,6 +77,18 @@ Future<void> getMaterialDefault({
     final padding = semantics.child as Padding;
 
     final material = padding.child as Material;
+
+    _log('getMaterialDefault')
+        .asString('material.color', material.color)
+        .print();
+
+    if (material.color != null) {
+      cardColor = material.color;
+
+      theme_action.setCardColor(
+        cardColor: cardColor!,
+      );
+    }
 
     final border = material.shape as RoundedRectangleBorder;
 
@@ -118,6 +135,7 @@ class CardMaterialDefaultWidget extends StatelessWidget {
             .raw('snapshot.hasData', snapshot.hasData)
             .enum_('snapshot.connectionState', snapshot.connectionState)
             .raw('cardBorderShapeRadius', cardBorderShapeRadius)
+            .exists('cardColor', cardColor)
             .print();
 
         return (snapshot.hasData &&

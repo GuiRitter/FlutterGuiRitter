@@ -8,7 +8,7 @@ export 'package:flutter_guiritter/ui/widget/body.widget.dart' show BodyWidget;
 export 'package:flutter_guiritter/ui/widget/bottom_app_bar.widget.dart'
     show BottomAppBarWidget;
 export 'package:flutter_guiritter/ui/widget/default.material.card.widget.dart'
-    show cardBorderShapeRadius, CardMaterialDefaultWidget;
+    show cardBorderShapeRadius, cardColor, CardMaterialDefaultWidget;
 export 'package:flutter_guiritter/ui/widget/dialog.widget.dart'
     show buildRowForMultiChoice, buildTextButton;
 export 'package:flutter_guiritter/ui/widget/text_form_field_l10n.widget.dart'

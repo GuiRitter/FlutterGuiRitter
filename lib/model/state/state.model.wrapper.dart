@@ -1,4 +1,5 @@
 import 'dart:convert' show jsonDecode, jsonEncode;
+import 'dart:ui' show Color;
 
 import 'package:flutter/material.dart' show ThemeMode, ValueGetter;
 import 'package:flutter_guiritter/common/_import.dart'
@@ -11,6 +12,7 @@ class StateModelWrapper<AppLocalizationsLocalType>
     extends model_state.BaseStateModelWrapper
     with
         model_state.CardBorderShapeRadiusMixin,
+        model_state.CardColorMixin,
         model_state.LoadingTagListMixin,
         model_state.L10nMixin<AppLocalizationsLocalType>,
         model_state.L10nGuiRitterMixin,
@@ -51,6 +53,7 @@ class StateModelWrapper<AppLocalizationsLocalType>
     ValueGetter<List<LoadingTagModel>>? loadingTagList,
     ValueGetter<String?>? token,
     ValueGetter<double?>? cardBorderShapeRadius,
+    ValueGetter<Color?>? cardColor,
   }) =>
       buildNewMap(
         storeStateMap: storeStateMap,
@@ -60,6 +63,7 @@ class StateModelWrapper<AppLocalizationsLocalType>
         loadingTagList: loadingTagList,
         token: token,
         cardBorderShapeRadius: cardBorderShapeRadius,
+        cardColor: cardColor,
       );
 
   @override
@@ -81,6 +85,7 @@ class StateModelWrapper<AppLocalizationsLocalType>
     ValueGetter<List<LoadingTagModel>>? loadingTagList,
     ValueGetter<String?>? token,
     ValueGetter<double?>? cardBorderShapeRadius,
+    ValueGetter<Color?>? cardColor,
   }) {
     final storeStateWrapperCurrent = StateModelWrapper(
       storeStateMap: storeStateMap,
@@ -111,6 +116,10 @@ class StateModelWrapper<AppLocalizationsLocalType>
         ? cardBorderShapeRadius.call()
         : storeStateWrapperCurrent.cardBorderShapeRadius;
 
+    final newCardColor = (cardColor != null)
+        ? cardColor.call()
+        : storeStateWrapperCurrent.cardColor;
+
     return {
       ...storeStateMap,
       StateKey.l10n: newL10n,
@@ -119,6 +128,7 @@ class StateModelWrapper<AppLocalizationsLocalType>
       StateKey.loadingTagList: newLoadingTagList,
       StateKey.token: newToken,
       StateKey.cardBorderShapeRadius: newCardBorderShapeRadius,
+      StateKey.cardColor: newCardColor,
     };
   }
 }

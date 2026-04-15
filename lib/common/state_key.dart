@@ -1,6 +1,8 @@
 class StateKey {
   static const cardBorderShapeRadius = 'cardBorderShapeRadius';
 
+  static const cardColor = 'cardColor';
+
   static const l10nGuiRitter = 'l10nGuiRitter';
 
   static const l10n = 'l10n';

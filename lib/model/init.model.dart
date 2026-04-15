@@ -37,7 +37,8 @@ class InitModel<AppLocalizationsLocalType> implements Loggable {
     return InitModel<AppLocalizationsLocalType>(
       isEveryInitDataLoaded: (state.l10nGuiRitter != null) &&
           (state.l10n != null) &&
-          (state.cardBorderShapeRadius != null),
+          (state.cardBorderShapeRadius != null) &&
+          (state.cardColor != null),
     );
   }
 }
